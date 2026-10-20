@@ -2,9 +2,9 @@
  "slug": "2610springs",
  "incident_name": "2610springs",
  "client": "BNSF",
- "generated": "2026-10-20T15:50:53Z",
+ "generated": "2026-10-20T16:01:29Z",
  "draft": true,
- "request_gid": "9c7fd191-93df-4f2d-a683-7cd82596d89a",
+ "request_gid": "535e9e54-20f0-49d9-b687-aa376e341768",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -17,8 +17,8 @@
  "summary": {
   "recon_count": 6,
   "photo_count": 4,
-  "pano_count": 0,
-  "ortho_count": 0,
+  "pano_count": 4,
+  "ortho_count": 5,
   "location": "Glenwood Springs, CO",
   "date_opened": ""
  },
@@ -67,8 +67,106 @@
    "thumb": "assets/recon/305/0_t.jpg"
   }
  ],
- "panos": [],
- "orthos": [],
+ "panos": [
+  {
+   "id": "ff23ff52-6a03-4531-983f-5ca4591835c1",
+   "name": "South Canyon Set 1 Pano",
+   "site_label": "31 m AGL",
+   "when": "2026-10-07 14:36:40",
+   "lon": -107.41697425,
+   "lat": 39.56492777777777,
+   "viewer_url": "panos/pano.html?tiles=tiles/ff23ff52-6a03-4531-983f-5ca4591835c1&title=South%20Canyon%20Set%201%20Pano"
+  },
+  {
+   "id": "f3acd606-429b-4547-9e30-1eb51a15011a",
+   "name": "SouthCanyon_Base_Pano",
+   "site_label": "10 m AGL",
+   "when": "2026-10-07 13:40:14",
+   "lon": -107.41726758333334,
+   "lat": 39.56506105555555,
+   "viewer_url": "panos/pano.html?tiles=tiles/f3acd606-429b-4547-9e30-1eb51a15011a&title=SouthCanyon_Base_Pano"
+  },
+  {
+   "id": "9a9851c2-2024-4cba-9a60-6120ff34af8b",
+   "name": "Two Rivers Set 2",
+   "site_label": "61 m AGL",
+   "when": "2026-10-07 11:52:32",
+   "lon": -107.33405366666666,
+   "lat": 39.55071608333332,
+   "viewer_url": "panos/pano.html?tiles=tiles/9a9851c2-2024-4cba-9a60-6120ff34af8b&title=Two%20Rivers%20Set%202"
+  },
+  {
+   "id": "e5fefe84-8e2a-4436-867c-1390dcd15c51",
+   "name": "2610springs 360 \u2014 Site 1",
+   "site_label": "23 m AGL",
+   "when": "2026-10-07 11:20:18",
+   "lon": -107.33357563888887,
+   "lat": 39.55064794444443,
+   "viewer_url": "panos/pano.html?tiles=tiles/e5fefe84-8e2a-4436-867c-1390dcd15c51&title=2610springs%20360%20%E2%80%94%20Site%201"
+  }
+ ],
+ "orthos": [
+  {
+   "id": "16338c1c7b094e809020249b3591dcef",
+   "name": "TwoRiverSet1",
+   "png": "assets/ortho/16338c1c7b094e809020249b3591dcef.png",
+   "bounds": [
+    39.54896531927091,
+    -107.33526796465794,
+    39.551505055722124,
+    -107.32999995612994
+   ],
+   "when": ""
+  },
+  {
+   "id": "bc7435a788eb4eaa98384a51df08ab1a",
+   "name": "Two Rivers Set 2",
+   "png": "assets/ortho/bc7435a788eb4eaa98384a51df08ab1a.png",
+   "bounds": [
+    39.548949842928,
+    -107.3352996406629,
+    39.551544027634876,
+    -107.33002416101567
+   ],
+   "when": ""
+  },
+  {
+   "id": "c6ff66724eab45c6a006307f677a290a",
+   "name": "Two Rivers Set 2",
+   "png": "assets/ortho/c6ff66724eab45c6a006307f677a290a.png",
+   "bounds": [
+    39.548949517896716,
+    -107.3353003512479,
+    39.55154580866856,
+    -107.33002335074731
+   ],
+   "when": ""
+  },
+  {
+   "id": "daa51e235d294277bec73d9424bda213",
+   "name": "Two Rivers Set 2",
+   "png": "assets/ortho/daa51e235d294277bec73d9424bda213.png",
+   "bounds": [
+    39.54895097179531,
+    -107.33529994610531,
+    39.55154739528602,
+    -107.33002728683007
+   ],
+   "when": ""
+  },
+  {
+   "id": "b35cf7d06d3e43289561bfd5f41a3fef",
+   "name": "South Canyon Set 1",
+   "png": "assets/ortho/b35cf7d06d3e43289561bfd5f41a3fef.png",
+   "bounds": [
+    39.56401732050891,
+    -107.41792434869419,
+    39.565513293207395,
+    -107.41498216881642
+   ],
+   "when": ""
+  }
+ ],
  "manifest": {
   "sections": [
    {
@@ -84,12 +182,12 @@
    {
     "key": "panos",
     "label": "360\u00b0 panoramas",
-    "count": 0
+    "count": 4
    },
    {
     "key": "orthos",
     "label": "Drone orthos",
-    "count": 0
+    "count": 5
    },
    {
     "key": "photos",
