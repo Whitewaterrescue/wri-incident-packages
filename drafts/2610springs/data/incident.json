@@ -1,0 +1,101 @@
+{
+ "slug": "2610springs",
+ "incident_name": "2610springs",
+ "client": "BNSF",
+ "generated": "2026-10-20T15:50:53Z",
+ "draft": true,
+ "request_gid": "9c7fd191-93df-4f2d-a683-7cd82596d89a",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true
+ },
+ "summary": {
+  "recon_count": 6,
+  "photo_count": 4,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "Glenwood Springs, CO",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   39.5582045053107,
+   -107.3749763187885
+  ],
+  "bbox": [
+   -107.416930577557,
+   39.5511753,
+   -107.33302206002,
+   39.5652337106214
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 302,
+   "type": "icp",
+   "when": 1791384300000,
+   "src": "assets/recon/302/0.jpg",
+   "thumb": "assets/recon/302/0_t.jpg"
+  },
+  {
+   "oid": 303,
+   "type": "boat_ramp",
+   "when": 1791390420000,
+   "src": "assets/recon/303/0.jpg",
+   "thumb": "assets/recon/303/0_t.jpg"
+  },
+  {
+   "oid": 304,
+   "type": "icp",
+   "when": 1791402540000,
+   "src": "assets/recon/304/0.jpg",
+   "thumb": "assets/recon/304/0_t.jpg"
+  },
+  {
+   "oid": 305,
+   "type": "boat_ramp",
+   "when": 1791402600000,
+   "src": "assets/recon/305/0.jpg",
+   "thumb": "assets/recon/305/0_t.jpg"
+  }
+ ],
+ "panos": [],
+ "orthos": [],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 6
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 4
+   }
+  ]
+ }
+}
