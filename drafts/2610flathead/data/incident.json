@@ -1,0 +1,115 @@
+{
+ "slug": "2610flathead",
+ "incident_name": "2610flathead",
+ "client": "BNSF",
+ "generated": "2026-10-22T19:22:31Z",
+ "draft": true,
+ "request_gid": "cd4b009f-488c-425b-9d88-c95ed1c64a52",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true
+ },
+ "summary": {
+  "recon_count": 3,
+  "photo_count": 1,
+  "pano_count": 1,
+  "ortho_count": 2,
+  "location": "West Glacier, MT",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   48.4589812494549,
+   -114.0082696951295
+  ],
+  "bbox": [
+   -114.04651193239,
+   48.418294749471,
+   -113.970027457869,
+   48.4996677494388
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 308,
+   "type": "tactical_team",
+   "when": 1792529940000,
+   "src": "assets/recon/308/0.jpg",
+   "thumb": "assets/recon/308/0_t.jpg"
+  }
+ ],
+ "panos": [
+  {
+   "id": "c2eae0b6-bd86-4bc7-8879-6ef83c30fd7f",
+   "name": "Bridge Collection PANO",
+   "site_label": "43 m AGL",
+   "when": "2026-10-21 10:11:31",
+   "lon": -113.96946422222224,
+   "lat": 48.49961219444444,
+   "viewer_url": "panos/pano.html?tiles=tiles/c2eae0b6-bd86-4bc7-8879-6ef83c30fd7f&title=Bridge%20Collection%20PANO"
+  }
+ ],
+ "orthos": [
+  {
+   "id": "a3020f6f40fa48eca1895dec88fbd2b2",
+   "name": "Bridge Collection 1",
+   "png": "assets/ortho/a3020f6f40fa48eca1895dec88fbd2b2.png",
+   "bounds": [
+    48.49855411500768,
+    -113.97127381166379,
+    48.500591461346815,
+    -113.9675618591807
+   ],
+   "when": ""
+  },
+  {
+   "id": "2324b4f76d884073ba9fab1262b51616",
+   "name": "Bridge Collection 2",
+   "png": "assets/ortho/2324b4f76d884073ba9fab1262b51616.png",
+   "bounds": [
+    48.49875897948299,
+    -113.97104889428066,
+    48.500549024616696,
+    -113.96749797397462
+   ],
+   "when": ""
+  }
+ ],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 3
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 1
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 2
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 1
+   }
+  ]
+ }
+}
