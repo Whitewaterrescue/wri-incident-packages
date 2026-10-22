@@ -2,9 +2,9 @@
  "slug": "2610flathead",
  "incident_name": "2610flathead",
  "client": "BNSF",
- "generated": "2026-10-22T19:22:31Z",
+ "generated": "2026-10-22T22:01:29Z",
  "draft": true,
- "request_gid": "cd4b009f-488c-425b-9d88-c95ed1c64a52",
+ "request_gid": "937bb7ce-de6c-4c21-964d-bd1175224e72",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -12,7 +12,8 @@
   "map": true,
   "panos": true,
   "orthos": true,
-  "photos": true
+  "photos": true,
+  "documents": true
  },
  "summary": {
   "recon_count": 3,
@@ -40,6 +41,8 @@
  "photos": [
   {
    "oid": 308,
+   "att_id": 117,
+   "key": "308:117",
    "type": "tactical_team",
    "when": 1792529940000,
    "src": "assets/recon/308/0.jpg",
@@ -83,6 +86,64 @@
    "when": ""
   }
  ],
+ "documents": [
+  {
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "count": 1,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=e131ca4e0ba844b9aff97b0d9ec27845"
+  },
+  {
+   "key": "ics205a",
+   "section": "ICS 205A \u2014 Communications List",
+   "count": 1,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=7b0ae5a2062c4bdbb0543048395d22c2"
+  },
+  {
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "count": 1,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=8a781e784c134dfba464438384fe12ea"
+  },
+  {
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "count": 1,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=f60f3a18e2064731b6b4db06f4f949f1"
+  },
+  {
+   "key": "briefing",
+   "section": "Full incident briefing (all documents) \u2014 draft",
+   "count": null,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=11e6211fe2064b5eb31af46968373351"
+  }
+ ],
+ "doc_candidates": [
+  {
+   "id": "ics201:1zUMVSOTZJc1D6-d9tj8dn99x7BAVntdq",
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "title": "ICS201-1792531972103"
+  },
+  {
+   "id": "ics205a",
+   "key": "ics205a",
+   "section": "ICS 205A \u2014 Communications List",
+   "title": "ICS 205A \u2014 Communications List"
+  },
+  {
+   "id": "hasp:70",
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "title": "HASP_BNSF_2610flathead_10/21/2026"
+  },
+  {
+   "id": "grp:MF_Flathead_GRP_Points_2025_WFL1:10:10",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Belton Bridge"
+  }
+ ],
  "manifest": {
   "sections": [
    {
@@ -109,6 +170,11 @@
     "key": "photos",
     "label": "Recon photos",
     "count": 1
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 4
    }
   ]
  }

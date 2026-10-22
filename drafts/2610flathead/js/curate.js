@@ -1,134 +1,261 @@
-/* ?edit=1 curation editor. A right-rail over the SAME rendered draft (WYSIWYG) reached from the
-   Field App's "Review draft". Controls:
-     - per-SECTION include/exclude (Summary / Map / 360 / Orthos / Photos / ...)
-     - per-ITEM include/exclude for Orthos, 360s and Photos (pick exactly which ones ship)
-     - ADD IMAGES that aren't on the map (loose photos/diagrams) -> appended to the gallery
-   Selections preview live. "Publish" hands the selection (curation_json) + any added images to the
-   builder, which re-emits the public package + PDF honoring it.
-
-   NOTE: in this local prototype the preview + selection are fully live; the server round-trip
-   (persist curation_json, upload added images, re-publish) is the production wiring step. */
+/* ?edit=1 curation editor (Caleb's draft-review design, wired 2026-10-22). A right rail over the
+   SAME rendered draft. The draft build is the scan: everything found is listed here.
+     - sections on/off (Summary / Map / 360 / Orthos / Photos / Documents)
+     - every official DOCUMENT found (each 213RR, the HASP, the 205A...) on/off
+     - every recon PHOTO on/off (stable key "<oid>:<attachment id>"), orthos + 360s on/off
+     - ADD PHOTOS (uploaded to the admin -> Drive; the builder freezes them into the gallery)
+     - RECIPIENTS of the published-package email (Employees roster + extra addresses)
+   Save -> admin package-curate (stores curation_json). Publish -> admin package-publish (stores it
+   and queues the final build). Both are checked against the row's draft PIN server-side.
+   The roster / saved recipients come from the admin AFTER the PIN -- never from the public files. */
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
     return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var EMAIL = /^[^@\s,;<>]+@[^@\s,;<>]+\.[^@\s,;<>]+$/;
+  var MAX_UPLOAD = 10 * 1024 * 1024;
 
   window.initCuration = function (data) {
     document.body.classList.add("editing");
-    var sections = (data.manifest && data.manifest.sections) || [];
-    var state = Object.assign({ summary: true, map: true, panos: true, orthos: true, photos: true }, data.sections || {});
-    var excluded = { orthos: {}, panos: {}, photos: {} };   // id -> true when turned OFF
-    var added = [];                                          // {name, url}
-
-    // per-item lists come from the rendered data
-    var itemSets = {
-      orthos: (data.orthos || []).map(function (o) { return { id: String(o.id), label: o.name || "Ortho", sel: "[data-ortho='" + cssesc(o.id) + "']" }; }),
-      panos: (data.panos || []).map(function (p) { return { id: String(p.id), label: (p.name || "Panorama") + (p.site_label ? " · " + p.site_label : ""), sel: "[data-pano='" + cssesc(p.id) + "']" }; }),
-      photos: (data.photos || []).map(function (p, i) { return { id: String(i), label: (p.type || "Photo") + " " + (i + 1), sel: "[data-photo='" + i + "']" }; }),
+    var pin = sessionStorage.getItem("wri_pkg_pin_" + data.slug) || "";
+    var server = { roster: [], default_recipients: [] };
+    var state = {
+      sections: Object.assign({ summary: true, map: true, panos: true, orthos: true, photos: true, documents: true },
+                              data.sections || {}),
+      exclude: { docs: {}, photos: {}, orthos: {}, panos: {} },
+      added: [],                         // {file_id, name, caption, url(local preview), status}
+      recipients: {}                     // email -> true
     };
-    function cssesc(s) { return String(s).replace(/'/g, "\\'"); }
+
+    function api(name, extra) {
+      var body = Object.assign({ api: name, slug: data.slug, request_id: data.request_gid, pin: pin }, extra || {});
+      return fetch(data.dispatch_url, { method: "POST", body: JSON.stringify(body) })
+        .then(function (r) { return r.json(); });
+    }
+
+    var photos = (data.photos || []).map(function (p, i) { return { id: String(p.key || i), p: p }; });
+    var docs = data.doc_candidates || [];
+    var docGroups = [];
+    docs.forEach(function (d) {
+      var g = docGroups.find(function (x) { return x.key === d.key; });
+      if (!g) { g = { key: d.key, section: d.section, items: [] }; docGroups.push(g); }
+      g.items.push(d);
+    });
 
     var el = document.createElement("aside");
     el.id = "curate";
     el.innerHTML =
       '<header>Edit package</header>' +
       '<div class="body">' +
-        '<div class="hint">Choose what appears in the shared package, then Publish. Contact details are kept out of the public page automatically.</div>' +
-        sections.map(function (s) {
-          var hasItems = itemSets[s.key] && itemSets[s.key].length;
-          return '<div class="csec">' +
-            '<label class="crow"><input type="checkbox" data-sec="' + esc(s.key) + '"' + (state[s.key] !== false ? ' checked' : '') + '>' +
-            '<span class="lbl">' + esc(s.label) + '</span>' + (s.count != null ? '<span class="ct">' + esc(s.count) + '</span>' : '') +
-            (hasItems ? '<button class="xpand" data-xp="' + esc(s.key) + '">items</button>' : '') + '</label>' +
-            (hasItems ? '<div class="items" id="items-' + esc(s.key) + '" hidden>' +
-              itemSets[s.key].map(function (it) {
-                return '<label class="irow"><input type="checkbox" data-item="' + esc(s.key) + '" data-id="' + esc(it.id) + '" checked>' +
-                  '<span>' + esc(it.label) + '</span></label>'; }).join('') +
-            '</div>' : '') + '</div>';
-        }).join("") +
-        '<div class="csec add"><div class="lbl" style="font-weight:600;margin-bottom:6px">Add images</div>' +
-          '<div class="hint" style="margin:0 0 6px">Photos or diagrams that aren’t on the map — they’ll appear in the Photos gallery.</div>' +
+        '<div class="hint">Everything found for this incident is listed. Untick what should NOT be in the published package and briefing PDF, add photos, pick who gets the email, then Publish.</div>' +
+        '<div class="csec"><div class="lbl ttl">Sections</div>' +
+          ((data.manifest && data.manifest.sections) || []).map(function (s) {
+            return '<label class="crow"><input type="checkbox" data-sec="' + esc(s.key) + '"' +
+              (state.sections[s.key] !== false ? ' checked' : '') + '><span class="lbl">' + esc(s.label) + '</span>' +
+              (s.count != null ? '<span class="ct">' + esc(s.count) + '</span>' : '') + '</label>';
+          }).join('') + '</div>' +
+        (docGroups.length ? '<div class="csec"><div class="lbl ttl">Documents <span class="ct">' + docs.length + '</span></div>' +
+          docGroups.map(function (g) {
+            return '<div class="dgrp"><div class="dsec">' + esc(g.section) + '</div>' + g.items.map(function (d) {
+              return '<label class="irow"><input type="checkbox" data-doc="' + esc(d.id) + '" checked><span>' +
+                esc(d.title !== d.section ? d.title : d.section) + '</span></label>';
+            }).join('') + '</div>';
+          }).join('') + '</div>' : '') +
+        (photos.length ? '<div class="csec"><div class="lbl ttl">Photos <span class="ct">' + photos.length + '</span></div>' +
+          '<div class="pgrid">' + photos.map(function (ph) {
+            return '<label class="pcell"><img loading="lazy" src="' + esc(ph.p.thumb || ph.p.src) + '" alt="">' +
+              '<input type="checkbox" data-photo="' + esc(ph.id) + '" checked></label>';
+          }).join('') + '</div></div>' : '') +
+        itemList("orthos", "Drone orthos", (data.orthos || []).map(function (o) { return { id: String(o.id), label: o.name || "Ortho" }; })) +
+        itemList("panos", "360° panoramas", (data.panos || []).map(function (p) { return { id: String(p.id), label: (p.name || "Panorama") + (p.site_label ? " · " + p.site_label : "") }; })) +
+        '<div class="csec add"><div class="lbl ttl">Add photos</div>' +
+          '<div class="hint" style="margin:0 0 6px">Photos or diagrams that aren’t on the map — they’ll appear in the Photos gallery and the briefing.</div>' +
           '<label class="drop" id="drop"><input type="file" id="addfiles" accept="image/*" multiple hidden>+ Choose images</label>' +
           '<div id="addedlist"></div>' +
         '</div>' +
+        '<div class="csec"><div class="lbl ttl">Email the published package to</div>' +
+          '<div id="rcptList" class="hint">Loading the staff list…</div>' +
+          '<input type="text" id="rcptExtra" class="rcptx" placeholder="Other addresses, comma-separated">' +
+        '</div>' +
+        '<div id="curMsg" class="hint"></div>' +
       '</div>' +
       '<footer><button class="btn" id="curSave">Save</button><button class="btn primary" id="curPublish">Publish</button></footer>';
     document.body.appendChild(el);
 
-    // section toggles
+    function itemList(kind, label, items) {
+      if (!items.length) return '';
+      return '<div class="csec"><div class="lbl ttl">' + esc(label) + ' <span class="ct">' + items.length + '</span></div>' +
+        items.map(function (it) {
+          return '<label class="irow"><input type="checkbox" data-item="' + kind + '" data-id="' + esc(it.id) + '" checked><span>' + esc(it.label) + '</span></label>';
+        }).join('') + '</div>';
+    }
+    function sel(attr, id) { return '[' + attr + '="' + String(id).replace(/["\\]/g, '\\$&') + '"]'; }
+    function msg(t, bad) { var m = $("curMsg"); m.textContent = t || ""; m.style.color = bad ? "#EC2329" : ""; }
+
+    // ---- wiring: every toggle previews live on the page behind the rail
     el.querySelectorAll("input[data-sec]").forEach(function (cb) {
       cb.onchange = function () {
-        state[cb.dataset.sec] = cb.checked;
+        state.sections[cb.dataset.sec] = cb.checked;
         var sec = $("sec-" + cb.dataset.sec);
         if (sec) sec.style.opacity = cb.checked ? "" : ".35";
       };
-      cb.onchange();
     });
-    // expand/collapse item lists
-    el.querySelectorAll(".xpand").forEach(function (b) {
-      b.onclick = function (e) { e.preventDefault(); var box = $("items-" + b.dataset.xp); if (box) box.hidden = !box.hidden; };
+    el.querySelectorAll("input[data-doc]").forEach(function (cb) {
+      cb.onchange = function () {
+        state.exclude.docs[cb.dataset.doc] = !cb.checked;
+        document.querySelectorAll(".docrow" + sel("data-doc", cb.dataset.doc)).forEach(function (n) { n.classList.toggle("off", !cb.checked); });
+      };
     });
-    // per-item toggles -> live hide/show the card
+    el.querySelectorAll("input[data-photo]").forEach(function (cb) {
+      cb.onchange = function () {
+        state.exclude.photos[cb.dataset.photo] = !cb.checked;
+        cb.parentNode.classList.toggle("off", !cb.checked);
+        document.querySelectorAll("#gallery " + sel("data-photo", cb.dataset.photo)).forEach(function (n) { n.style.display = cb.checked ? "" : "none"; });
+      };
+    });
     el.querySelectorAll("input[data-item]").forEach(function (cb) {
       cb.onchange = function () {
-        var set = itemSets[cb.dataset.item].find(function (x) { return x.id === cb.dataset.id; });
-        if (!set) return;
-        excluded[cb.dataset.item][cb.dataset.id] = !cb.checked;
-        document.querySelectorAll(set.sel).forEach(function (node) { node.style.display = cb.checked ? "" : "none"; });
+        state.exclude[cb.dataset.item][cb.dataset.id] = !cb.checked;
+        var attr = cb.dataset.item === "orthos" ? "data-ortho" : "data-pano";
+        document.querySelectorAll(sel(attr, cb.dataset.id)).forEach(function (n) { n.style.display = cb.checked ? "" : "none"; });
       };
     });
 
-    // add images (local preview via object URLs)
+    // ---- add photos: upload now (admin -> Drive), keep the returned file id
     function addFiles(files) {
       Array.prototype.forEach.call(files, function (f) {
         if (!/^image\//.test(f.type)) return;
-        var url = URL.createObjectURL(f);
-        added.push({ name: f.name, url: url });
-        var g = $("gallery");
-        if (g) {
-          var fig = document.createElement("figure");
-          fig.className = "shot added";
-          fig.innerHTML = '<img src="' + url + '" alt="' + esc(f.name) + '"><figcaption>Added · ' + esc(f.name) + '</figcaption><button class="rm" title="Remove">×</button>';
-          fig.querySelector(".rm").onclick = function () { fig.remove(); added = added.filter(function (a) { return a.url !== url; }); renderAdded(); };
-          g.appendChild(fig);
-        }
+        if (f.size > MAX_UPLOAD) { msg(f.name + " is over 10 MB — skipped", true); return; }
+        var row = { name: f.name, caption: "", url: URL.createObjectURL(f), file_id: null, status: "uploading…" };
+        state.added.push(row);
         renderAdded();
+        var rd = new FileReader();
+        rd.onload = function () {
+          api("package-upload", { name: f.name, mime: f.type, data_b64: String(rd.result).split(",")[1] })
+            .then(function (j) {
+              if (j && j.ok && j.file_id) { row.file_id = j.file_id; row.status = "uploaded"; }
+              else { row.status = "failed: " + ((j && j.error) || "upload error"); }
+              renderAdded();
+            })
+            .catch(function (e) { row.status = "failed: " + e.message; renderAdded(); });
+        };
+        rd.readAsDataURL(f);
       });
     }
     function renderAdded() {
-      $("addedlist").innerHTML = added.length ? added.map(function (a) { return '<div class="addrow">✓ ' + esc(a.name) + '</div>'; }).join("") : '';
-      // make sure the Photos section is on if images were added
-      if (added.length) { var pc = el.querySelector("input[data-sec='photos']"); if (pc && !pc.checked) { pc.checked = true; pc.onchange(); } }
+      $("addedlist").innerHTML = state.added.map(function (a, i) {
+        return '<div class="addrow">' + (a.url ? '<img src="' + esc(a.url) + '" alt="">' : '') +
+          '<div class="addmeta"><div>' + esc(a.name) + ' <span class="ct">' + esc(a.status || "") + '</span></div>' +
+          '<input type="text" class="cap" data-i="' + i + '" placeholder="Caption (optional)" value="' + esc(a.caption) + '"></div>' +
+          '<button class="rm" data-i="' + i + '" title="Remove">×</button></div>';
+      }).join("");
+      $("addedlist").querySelectorAll("input.cap").forEach(function (inp) { inp.oninput = function () { state.added[+inp.dataset.i].caption = inp.value; }; });
+      $("addedlist").querySelectorAll("button.rm").forEach(function (b) { b.onclick = function () { state.added.splice(+b.dataset.i, 1); renderAdded(); }; });
     }
     $("drop").onclick = function () { $("addfiles").click(); };
     $("addfiles").onchange = function () { addFiles(this.files); this.value = ""; };
-    el.querySelector("#drop").addEventListener("dragover", function (e) { e.preventDefault(); el.querySelector("#drop").classList.add("over"); });
-    el.querySelector("#drop").addEventListener("dragleave", function () { el.querySelector("#drop").classList.remove("over"); });
-    el.querySelector("#drop").addEventListener("drop", function (e) { e.preventDefault(); el.querySelector("#drop").classList.remove("over"); addFiles(e.dataTransfer.files); });
+    $("drop").addEventListener("dragover", function (e) { e.preventDefault(); $("drop").classList.add("over"); });
+    $("drop").addEventListener("dragleave", function () { $("drop").classList.remove("over"); });
+    $("drop").addEventListener("drop", function (e) { e.preventDefault(); $("drop").classList.remove("over"); addFiles(e.dataTransfer.files); });
 
-    function curationJson() {
-      return {
-        version: 1, sections: state,
-        items: {
-          orthos: Object.keys(excluded.orthos).filter(function (k) { return excluded.orthos[k]; }),
-          panos: Object.keys(excluded.panos).filter(function (k) { return excluded.panos[k]; }),
-          photos: Object.keys(excluded.photos).filter(function (k) { return excluded.photos[k]; }),
-        },
-        added_images: added.map(function (a) { return a.name; }),
-      };
+    // ---- recipients (roster from the admin, after the PIN)
+    function rosterEmails() {
+      var known = {};
+      (server.roster || []).forEach(function (r) { var e = String((r && r.email) || "").toLowerCase(); if (EMAIL.test(e)) known[e] = true; });
+      return known;
+    }
+    function renderRecipients() {
+      var known = rosterEmails();
+      var rows = (server.roster || []).filter(function (r) { return r && EMAIL.test(String(r.email || "").toLowerCase()); }).map(function (r) {
+        var e = String(r.email).toLowerCase();
+        return '<label class="irow"><input type="checkbox" data-rcpt="' + esc(e) + '"' + (state.recipients[e] ? " checked" : "") + '><span>' +
+          esc(r.name || e) + ' <span class="ct">' + esc(e) + '</span></span></label>';
+      });
+      $("rcptList").className = "";
+      $("rcptList").innerHTML = rows.join("") || '<div class="hint">No staff list available — type addresses below.</div>';
+      $("rcptList").querySelectorAll("input[data-rcpt]").forEach(function (cb) {
+        cb.onchange = function () { state.recipients[cb.dataset.rcpt] = cb.checked; };
+      });
+      $("rcptExtra").value = Object.keys(state.recipients).filter(function (e) { return state.recipients[e] && !known[e]; }).join(", ");
+    }
+    function recipients() {
+      var known = rosterEmails();
+      var out = Object.keys(state.recipients).filter(function (e) { return state.recipients[e] && known[e]; });
+      $("rcptExtra").value.split(/[,;\s]+/).forEach(function (e) {
+        e = e.trim().toLowerCase();
+        if (EMAIL.test(e) && out.indexOf(e) < 0) out.push(e);
+      });
+      return out;
     }
 
+    // ---- restore the saved selection (admin, after the PIN)
+    function applySaved(c) {
+      if (!c) return;
+      if (c.sections) Object.keys(c.sections).forEach(function (k) {
+        var cb = el.querySelector("input" + sel("data-sec", k)); if (cb) { cb.checked = c.sections[k] !== false; cb.onchange(); }
+      });
+      var ex = c.exclude || {};
+      (ex.docs || []).forEach(function (id) { var cb = el.querySelector("input" + sel("data-doc", id)); if (cb) { cb.checked = false; cb.onchange(); } });
+      (ex.photos || []).forEach(function (id) { var cb = el.querySelector("input" + sel("data-photo", id)); if (cb) { cb.checked = false; cb.onchange(); } });
+      ["orthos", "panos"].forEach(function (k) {
+        (ex[k] || []).forEach(function (id) { var cb = el.querySelector('input[data-item="' + k + '"]' + sel("data-id", id)); if (cb) { cb.checked = false; cb.onchange(); } });
+      });
+      (c.added_images || []).forEach(function (a) {
+        if (a && a.file_id && !state.added.some(function (x) { return x.file_id === a.file_id; }))
+          state.added.push({ name: a.name || "photo", caption: a.caption || "", file_id: a.file_id, url: "", status: "uploaded" });
+      });
+      renderAdded();
+    }
+    el.querySelectorAll("input[data-sec]").forEach(function (cb) { cb.onchange(); });
+    api("package-pin", { want: "curate" }).then(function (j) {
+      if (!j || !j.ok) { msg("PIN not accepted — reload and enter it again.", true); renderRecipients(); return; }
+      server.roster = j.roster || [];
+      server.default_recipients = j.default_recipients || [];
+      var saved = null;
+      try { saved = j.curation_json ? JSON.parse(j.curation_json) : null; } catch (e) { saved = null; }
+      var rc = (saved && saved.recipients && saved.recipients.length) ? saved.recipients : server.default_recipients;
+      rc.forEach(function (e) { state.recipients[String(e).toLowerCase()] = true; });
+      applySaved(saved);
+      renderRecipients();
+    }).catch(function (e) { msg("Could not reach the Incident Admin: " + e.message, true); renderRecipients(); });
+
+    // ---- save / publish
+    function curationJson() {
+      var on = function (m) { return Object.keys(m).filter(function (k) { return m[k]; }); };
+      return {
+        version: 2, sections: state.sections,
+        exclude: { docs: on(state.exclude.docs), photos: on(state.exclude.photos),
+                   orthos: on(state.exclude.orthos), panos: on(state.exclude.panos) },
+        added_images: state.added.filter(function (a) { return a.file_id; })
+          .map(function (a) { return { file_id: a.file_id, name: a.name, caption: a.caption }; }),
+        recipients: recipients()
+      };
+    }
+    function busy(b) { $("curSave").disabled = b; $("curPublish").disabled = b; }
+    function pendingUploads() { return state.added.some(function (a) { return !a.file_id && /uploading/.test(a.status); }); }
+
     $("curSave").onclick = function () {
-      var j = curationJson();
-      console.log("curation_json", j);
-      alert("Selection captured:\n\n" + JSON.stringify(j, null, 1) +
-        (added.length ? "\n\n(" + added.length + " added image(s) — these upload with the package on Publish in production.)" : "") +
-        "\n\n[Prototype] In production this saves to the request and re-renders.");
+      if (pendingUploads()) { msg("Wait for the photo uploads to finish.", true); return; }
+      busy(true); msg("Saving…");
+      api("package-curate", { curation_json: JSON.stringify(curationJson()) })
+        .then(function (j) { msg(j && j.ok ? "Saved." : "Save failed: " + ((j && j.error) || "unknown"), !(j && j.ok)); })
+        .catch(function (e) { msg("Save failed: " + e.message, true); })
+        .then(function () { busy(false); });
     };
     $("curPublish").onclick = function () {
-      if (!confirm("Publish this package publicly with the current selection?")) return;
-      alert("[Prototype] Publish would: upload " + added.length + " added image(s), save the selection, and re-render the public package + briefing PDF honoring it.");
+      if (pendingUploads()) { msg("Wait for the photo uploads to finish.", true); return; }
+      var c = curationJson();
+      if (!c.recipients.length && !confirm("No one is selected to receive the email. Publish anyway?")) return;
+      if (!confirm("Publish this package with the current selection?\n\nThe public page goes live and " +
+                   (c.recipients.length ? c.recipients.length + " recipient(s) get the email." : "only the default Incident Admin address gets the email."))) return;
+      busy(true); msg("Publishing…");
+      api("package-publish", { curation_json: JSON.stringify(c) })
+        .then(function (j) {
+          if (j && j.ok) msg("Publish queued — the final package builds in a few minutes; the Incident Admin shows when it's done.");
+          else { msg("Publish failed: " + ((j && j.error) || "unknown"), true); busy(false); }
+        })
+        .catch(function (e) { msg("Publish failed: " + e.message, true); busy(false); });
     };
   };
 })();

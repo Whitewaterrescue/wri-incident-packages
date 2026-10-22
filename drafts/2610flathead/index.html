@@ -45,7 +45,7 @@
     <h2>Summary</h2>
     <div class="stats" id="stats"></div>
     <p class="muted" id="summaryNote"></p>
-    <p class="muted" id="briefingNote">A full incident briefing (ICS 201, HASP, personnel roster, resources) is available to authorized recipients on request.</p>
+    <p class="muted" id="briefingNote">The official incident documents (ICS 201, 205A, HASP and others) are available to WRI staff with an ArcGIS sign-in.</p>
   </section>
 
   <section id="sec-map" class="section" hidden>
@@ -69,6 +69,12 @@
   <section id="sec-photos" class="section" hidden>
     <h2>Recon photos</h2>
     <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="sec-documents" class="section" hidden>
+    <h2>Documents</h2>
+    <p class="muted" id="docNote">Official incident documents (ICS 201, 205A, HASP and others). Each opens in ArcGIS Online and needs a WRI sign-in.</p>
+    <div class="doclist" id="docList"></div>
   </section>
 </main>
 
@@ -120,7 +126,7 @@
     const g = $("gallery");
     if (!d.photos || !d.photos.length){ g.innerHTML = '<p class="muted">No recon photos in this package.</p>'; return; }
     g.innerHTML = d.photos.map((p, i) =>
-      `<figure class="shot" data-photo="${i}"><img loading="lazy" src="${esc(p.thumb || p.src)}" data-full="${esc(p.src)}" alt="${esc(p.type || "Recon photo")}">`
+      `<figure class="shot" data-photo="${esc(p.key || i)}"><img loading="lazy" src="${esc(p.thumb || p.src)}" data-full="${esc(p.src)}" alt="${esc(p.type || "Recon photo")}">`
       + `<figcaption>${esc(p.type || "")}${p.when ? " · " + esc(fmtDate(p.when)) : ""}</figcaption></figure>`).join("");
     for (const img of g.querySelectorAll("img")) img.onclick = () => openLightbox(img.dataset.full);
   }
@@ -151,13 +157,31 @@
     for (const img of g.querySelectorAll("img")) img.onclick = () => openLightbox(img.dataset.full);
   }
 
+  function renderDocs(d){
+    const pub = d.documents || [], cand = d.doc_candidates || [];
+    if (pub.length){
+      $("docList").innerHTML = pub.map(r =>
+        `<a class="docrow" href="${esc(r.url)}" target="_blank" rel="noopener"><span class="doct">${esc(r.section)}</span>`
+        + `${r.count > 1 ? `<span class="docc">${esc(r.count)} files</span>` : ""}<span class="doco">Open · WRI sign-in</span></a>`).join("");
+      $("briefingNote").hidden = true;
+      if (d.draft) $("docNote").textContent = "Draft: everything found for this incident (opens with a WRI ArcGIS sign-in). Untick documents in Edit package; the published page links only the ones you keep.";
+    } else if (cand.length){
+      $("docNote").textContent = "Draft: documents found for this incident. Pick which ones are published (as WRI sign-in links) in Edit package.";
+      $("docList").innerHTML = cand.map(c =>
+        `<div class="docrow" data-doc="${esc(c.id)}"><span class="doct">${esc(c.section)}</span><span class="docc">${esc(c.title !== c.section ? c.title : "")}</span></div>`).join("");
+    } else {
+      $("docList").innerHTML = '<p class="muted">No documents in this package.</p>';
+    }
+  }
+
   function openLightbox(src){ if (!src) return; $("lbImg").src = src; $("lightbox").hidden = false; }
   $("lbClose").onclick = () => { $("lightbox").hidden = true; $("lbImg").src = ""; };
   $("lightbox").onclick = e => { if (e.target.id === "lightbox") { $("lightbox").hidden = true; $("lbImg").src = ""; } };
 
   function renderTabs(d){
-    const counts = {panos: (d.panos||[]).length, orthos: (d.orthos||[]).length, photos: (d.photos||[]).length};
-    const secs = [["summary","Summary"],["map","Map"],["panos","360°"],["orthos","Orthos"],["photos","Photos"]]
+    const counts = {panos: (d.panos||[]).length, orthos: (d.orthos||[]).length, photos: (d.photos||[]).length,
+                    documents: (d.documents||[]).length || (d.doc_candidates||[]).length};
+    const secs = [["summary","Summary"],["map","Map"],["panos","360°"],["orthos","Orthos"],["photos","Photos"],["documents","Documents"]]
       // hide a tab when the section is curated off OR has no content (keeps the bar honest)
       .filter(([k]) => d.sections[k] !== false && (counts[k] === undefined || counts[k] > 0 || k === "map"));
     if (PRINT){ $("tabs").hidden = true; for (const [k] of secs) showSection(k, true); if (window.initPackageMap) window.initPackageMap(d); return; }
@@ -188,6 +212,7 @@
     renderGallery(d);
     renderPanos(d);
     renderOrthos(d);
+    renderDocs(d);
     renderTabs(d);
     if (EDIT && window.initCuration) window.initCuration(d);
     if (d.draft) $("draftbanner").hidden = false;

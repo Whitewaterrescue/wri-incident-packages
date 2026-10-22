@@ -121,7 +121,21 @@ body.editing main.wrap, body.editing .foot{margin-right:300px}
 #curate .irow input{width:15px;height:15px}
 #curate .drop{display:block;text-align:center;border:1.5px dashed var(--border);border-radius:8px;padding:12px;color:var(--text-muted);cursor:pointer;font-size:13px}
 #curate .drop:hover,#curate .drop.over{border-color:var(--accent);color:#fff;background:rgba(236,35,41,.08)}
-#curate .addrow{font-size:12px;color:var(--success);margin-top:4px}
+#curate .addrow{font-size:12px;color:var(--text-muted);margin-top:6px;display:flex;gap:8px;align-items:flex-start}
+#curate .addrow img{width:44px;height:44px;object-fit:cover;border-radius:4px}
+#curate .addrow .addmeta{flex:1;min-width:0}
+#curate .addrow .cap,#curate .rcptx{width:100%;margin-top:4px;background:transparent;border:1px solid var(--border);border-radius:6px;color:inherit;padding:5px 7px;font:inherit;font-size:12px}
+#curate .addrow .rm{background:transparent;border:0;color:var(--text-muted);font-size:16px;cursor:pointer}
+#curate .ttl{font-weight:600;margin-bottom:6px}
+#curate .ttl .ct,#curate .irow .ct,#curate .addrow .ct{color:var(--text-muted);font-size:11px;font-weight:400}
+#curate .dgrp{margin:4px 0 8px}
+#curate .dsec{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin:6px 0 3px}
+#curate .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+#curate .pcell{position:relative;display:block;cursor:pointer}
+#curate .pcell img{width:100%;height:64px;object-fit:cover;border-radius:4px;display:block}
+#curate .pcell input{position:absolute;top:4px;left:4px;width:16px;height:16px}
+#curate .pcell.off img{opacity:.25}
+#curate .irow{margin:3px 0}
 .shot.added{outline:2px solid var(--accent);position:relative}
 .shot.added .rm{position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:none;background:rgba(0,0,0,.7);color:#fff;font-size:15px;line-height:1;cursor:pointer}
 
@@ -135,3 +149,12 @@ body.editing main.wrap, body.editing .foot{margin-right:300px}
 }
 body.print{background:#fff;color:#111}
 body.print .stat,body.print .shot,body.print .section{background:#fff;border-color:#ccc}
+
+/* Documents tab: titles + org-only AGOL links (WRI sign-in); never document content */
+.doclist{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.docrow{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.12);border-radius:8px;color:inherit;text-decoration:none}
+a.docrow:hover{border-color:#EC2329}
+.docrow .doct{font-family:'Epilogue',sans-serif;font-weight:600;flex:1}
+.docrow .docc{opacity:.7;font-size:.9em}
+.docrow .doco{color:#EC2329;font-size:.9em;white-space:nowrap}
+.docrow.off{opacity:.35}
