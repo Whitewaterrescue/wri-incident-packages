@@ -2,9 +2,9 @@
  "slug": "2610flathead",
  "incident_name": "2610flathead",
  "client": "BNSF",
- "generated": "2026-10-22T22:01:29Z",
+ "generated": "2026-10-22T22:53:46Z",
  "draft": true,
- "request_gid": "937bb7ce-de6c-4c21-964d-bd1175224e72",
+ "request_gid": "2fdd0d9f-52dc-4b19-b37e-df50fb3207e3",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -86,38 +86,7 @@
    "when": ""
   }
  ],
- "documents": [
-  {
-   "key": "ics201",
-   "section": "ICS 201 \u2014 Incident Briefing",
-   "count": 1,
-   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=e131ca4e0ba844b9aff97b0d9ec27845"
-  },
-  {
-   "key": "ics205a",
-   "section": "ICS 205A \u2014 Communications List",
-   "count": 1,
-   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=7b0ae5a2062c4bdbb0543048395d22c2"
-  },
-  {
-   "key": "hasp",
-   "section": "Health & Safety Plan (HASP)",
-   "count": 1,
-   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=8a781e784c134dfba464438384fe12ea"
-  },
-  {
-   "key": "grp",
-   "section": "Response Plan Strategy Sheets (GRP)",
-   "count": 1,
-   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=f60f3a18e2064731b6b4db06f4f949f1"
-  },
-  {
-   "key": "briefing",
-   "section": "Full incident briefing (all documents) \u2014 draft",
-   "count": null,
-   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=11e6211fe2064b5eb31af46968373351"
-  }
- ],
+ "documents": [],
  "doc_candidates": [
   {
    "id": "ics201:1zUMVSOTZJc1D6-d9tj8dn99x7BAVntdq",
@@ -129,13 +98,19 @@
    "id": "ics205a",
    "key": "ics205a",
    "section": "ICS 205A \u2014 Communications List",
-   "title": "ICS 205A \u2014 Communications List"
+   "title": "ICS 205A \u2014 Communications List (16 contacts)"
   },
   {
    "id": "hasp:70",
    "key": "hasp",
    "section": "Health & Safety Plan (HASP)",
    "title": "HASP_BNSF_2610flathead_10/21/2026"
+  },
+  {
+   "id": "grp:WRI_GRP_Universal_DEV:161:379",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Belton Bridge (GRP Capture MFF-10)"
   },
   {
    "id": "grp:MF_Flathead_GRP_Points_2025_WFL1:10:10",
@@ -174,7 +149,7 @@
    {
     "key": "documents",
     "label": "Documents (WRI sign-in)",
-    "count": 4
+    "count": 5
    }
   ]
  }

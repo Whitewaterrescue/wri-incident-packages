@@ -25,6 +25,7 @@
                               data.sections || {}),
       exclude: { docs: {}, photos: {}, orthos: {}, panos: {} },
       added: [],                         // {file_id, name, caption, url(local preview), status}
+      addGrp: [],                        // GRP Capture sites added by search {oid, site_code, site_name}
       recipients: {}                     // email -> true
     };
 
@@ -62,6 +63,11 @@
                 esc(d.title !== d.section ? d.title : d.section) + '</span></label>';
             }).join('') + '</div>';
           }).join('') + '</div>' : '') +
+        '<div class="csec"><div class="lbl ttl">Add a GRP Capture sheet</div>' +
+          '<div class="hint" style="margin:0 0 6px">Nearby GRP sheets are listed above. Updates elsewhere on the river can be added by site name or code.</div>' +
+          '<input type="text" id="grpQ" class="rcptx" placeholder="Search site name or code, e.g. Belton or MFF-10">' +
+          '<div id="grpRes"></div><div id="grpAdded"></div>' +
+        '</div>' +
         (photos.length ? '<div class="csec"><div class="lbl ttl">Photos <span class="ct">' + photos.length + '</span></div>' +
           '<div class="pgrid">' + photos.map(function (ph) {
             return '<label class="pcell"><img loading="lazy" src="' + esc(ph.p.thumb || ph.p.src) + '" alt="">' +
@@ -159,6 +165,43 @@
     $("drop").addEventListener("dragleave", function () { $("drop").classList.remove("over"); });
     $("drop").addEventListener("drop", function (e) { e.preventDefault(); $("drop").classList.remove("over"); addFiles(e.dataTransfer.files); });
 
+    // ---- GRP Capture search (admin package-grp-search, after the PIN)
+    var grpTimer = null;
+    function renderGrpAdded() {
+      $("grpAdded").innerHTML = state.addGrp.map(function (g, i) {
+        return '<div class="irow"><span>✓ ' + esc(g.site_name) + ' <span class="ct">' + esc(g.site_code) + '</span></span>' +
+          '<button class="xpand" data-rmgrp="' + i + '">remove</button></div>';
+      }).join("");
+      $("grpAdded").querySelectorAll("[data-rmgrp]").forEach(function (b) {
+        b.onclick = function (e) { e.preventDefault(); state.addGrp.splice(+b.dataset.rmgrp, 1); renderGrpAdded(); };
+      });
+    }
+    $("grpQ").oninput = function () {
+      clearTimeout(grpTimer);
+      var q = $("grpQ").value.trim();
+      if (q.length < 2) { $("grpRes").innerHTML = ""; return; }
+      grpTimer = setTimeout(function () {
+        $("grpRes").innerHTML = '<div class="hint">Searching…</div>';
+        api("package-grp-search", { q: q }).then(function (j) {
+          if (!j || !j.ok) { $("grpRes").innerHTML = '<div class="hint">' + esc((j && j.error) || "search failed") + '</div>'; return; }
+          var res = (j.results || []).filter(function (r) { return !state.addGrp.some(function (g) { return g.oid === r.oid; }); });
+          $("grpRes").innerHTML = res.length ? res.map(function (r, i) {
+            return '<div class="irow"><span>' + esc(r.site_name) + ' <span class="ct">' + esc(r.site_code) +
+              (r.revises ? ' · updates ' + esc(r.revises) : '') + '</span></span><button class="xpand" data-addgrp="' + i + '">add</button></div>';
+          }).join("") : '<div class="hint">No finished GRP Capture sheets match.</div>';
+          $("grpRes").querySelectorAll("[data-addgrp]").forEach(function (b) {
+            b.onclick = function (e) {
+              e.preventDefault();
+              var r = res[+b.dataset.addgrp];
+              state.addGrp.push({ oid: r.oid, site_code: r.site_code, site_name: r.site_name });
+              b.parentNode.remove();
+              renderGrpAdded();
+            };
+          });
+        }).catch(function (e) { $("grpRes").innerHTML = '<div class="hint">' + esc(e.message) + '</div>'; });
+      }, 350);
+    };
+
     // ---- recipients (roster from the admin, after the PIN)
     function rosterEmails() {
       var known = {};
@@ -206,6 +249,8 @@
           state.added.push({ name: a.name || "photo", caption: a.caption || "", file_id: a.file_id, url: "", status: "uploaded" });
       });
       renderAdded();
+      (c.add_grp || []).forEach(function (g) { if (g && g.oid) state.addGrp.push(g); });
+      renderGrpAdded();
     }
     el.querySelectorAll("input[data-sec]").forEach(function (cb) { cb.onchange(); });
     api("package-pin", { want: "curate" }).then(function (j) {
@@ -229,6 +274,7 @@
                    orthos: on(state.exclude.orthos), panos: on(state.exclude.panos) },
         added_images: state.added.filter(function (a) { return a.file_id; })
           .map(function (a) { return { file_id: a.file_id, name: a.name, caption: a.caption }; }),
+        add_grp: state.addGrp,
         recipients: recipients()
       };
     }
