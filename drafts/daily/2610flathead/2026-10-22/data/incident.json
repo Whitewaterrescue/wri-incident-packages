@@ -2,9 +2,9 @@
  "slug": "2610flathead",
  "incident_name": "2610flathead \u2014 2026-10-22",
  "client": "BNSF",
- "generated": "2026-10-23T14:42:14Z",
+ "generated": "2026-10-23T15:40:33Z",
  "draft": true,
- "request_gid": "3e06c2eb-8053-4395-a070-c9507ccae060",
+ "request_gid": "51ce1bff-e4f8-4da0-ae6e-96a68d408e38",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -40,12 +40,6 @@
    "key": "ics201",
    "section": "ICS 201 \u2014 Incident Briefing",
    "title": "ICS 201 (latest version)"
-  },
-  {
-   "id": "ics205a",
-   "key": "ics205a",
-   "section": "ICS 205A \u2014 Communications List",
-   "title": "ICS 205A (11 contacts)"
   },
   {
    "id": "hasp:70",
@@ -84,7 +78,7 @@
    {
     "key": "documents",
     "label": "Documents (WRI sign-in)",
-    "count": 3
+    "count": 2
    }
   ]
  },
@@ -93,7 +87,7 @@
   "date": "2026-10-22",
   "day_number": 3,
   "glance": {
-   "personnel": 11,
+   "personnel": 0,
    "work_assignments": 2,
    "resources": 10,
    "recon_observations": 0,
