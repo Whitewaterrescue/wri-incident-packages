@@ -2,9 +2,9 @@
  "slug": "2610flathead",
  "incident_name": "2610flathead \u2014 2026-10-21",
  "client": "BNSF",
- "generated": "2026-10-23T15:10:30Z",
+ "generated": "2026-10-23T15:39:34Z",
  "draft": true,
- "request_gid": "9caac370-ba17-4a28-bb95-8060ff458943",
+ "request_gid": "037ae21f-6f2e-4764-b0dc-896ce3f4e709",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
