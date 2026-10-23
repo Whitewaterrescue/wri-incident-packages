@@ -1,0 +1,97 @@
+{
+ "slug": "2610flathead",
+ "incident_name": "2610flathead \u2014 2026-10-21",
+ "client": "BNSF",
+ "generated": "2026-10-23T15:27:34Z",
+ "draft": false,
+ "request_gid": "9caac370-ba17-4a28-bb95-8060ff458943",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": false,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 0,
+  "photo_count": 0,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "West Glacier, MT",
+  "date_opened": ""
+ },
+ "map": {
+  "center": null,
+  "bbox": null,
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [],
+ "panos": [],
+ "orthos": [],
+ "documents": [
+  {
+   "key": "daily",
+   "section": "Daily report 2026-10-21 (PDF)",
+   "count": null,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=83a35f9ee437484988915c9b2ed333c3"
+  }
+ ],
+ "doc_candidates": [],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 0
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 0
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 1
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages",
+ "daily": {
+  "date": "2026-10-21",
+  "day_number": 2,
+  "glance": {
+   "personnel": 14,
+   "work_assignments": 0,
+   "resources": 0,
+   "recon_observations": 0,
+   "safety_observations": 0,
+   "vessel_trips": 0,
+   "rr213_new": 0,
+   "hasp_acks": 0,
+   "air_readings": 0,
+   "photos": 0
+  },
+  "project_slug": "2610flathead"
+ }
+}
