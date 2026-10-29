@@ -1,0 +1,142 @@
+{
+ "slug": "2610open",
+ "incident_name": "2610open \u2014 2026-10-28",
+ "client": "WRI",
+ "generated": "2026-10-29T18:28:05Z",
+ "draft": false,
+ "request_gid": "83ba9d11-42c4-410a-afb8-0d652781e65e",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": false,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 4,
+  "photo_count": 4,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "Missoula, MT",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   46.89462306291905,
+   -114.0828733705855
+  ],
+  "bbox": [
+   -114.15114177725,
+   46.8901247438381,
+   -114.014604963921,
+   46.899121382
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 325,
+   "att_id": 133,
+   "key": "325:133",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/0.jpg",
+   "thumb": "assets/recon/325/0_t.jpg"
+  },
+  {
+   "oid": 325,
+   "att_id": 134,
+   "key": "325:134",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/1.jpg",
+   "thumb": "assets/recon/325/1_t.jpg"
+  },
+  {
+   "oid": 325,
+   "att_id": 135,
+   "key": "325:135",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/2.jpg",
+   "thumb": "assets/recon/325/2_t.jpg"
+  },
+  {
+   "oid": 325,
+   "att_id": 136,
+   "key": "325:136",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/3.jpg",
+   "thumb": "assets/recon/325/3_t.jpg"
+  }
+ ],
+ "panos": [],
+ "orthos": [],
+ "documents": [
+  {
+   "key": "daily",
+   "section": "Daily report 2026-10-28 (PDF)",
+   "count": null,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=c06751463d85402c837c7751a17c834b"
+  }
+ ],
+ "doc_candidates": [],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 4
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 4
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 1
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages",
+ "daily": {
+  "date": "2026-10-28",
+  "day_number": 6,
+  "glance": {
+   "personnel": 0,
+   "work_assignments": 1,
+   "resources": 6,
+   "recon_observations": 4,
+   "safety_observations": 0,
+   "vessel_trips": 0,
+   "rr213_new": 0,
+   "hasp_acks": 0,
+   "air_readings": 0,
+   "photos": 4
+  },
+  "project_slug": "2610open"
+ }
+}
