@@ -1,0 +1,90 @@
+{
+ "slug": "2611spokane",
+ "incident_name": "2611spokane \u2014 2026-10-29",
+ "client": "BNSF",
+ "generated": "2026-10-29T18:09:11Z",
+ "draft": true,
+ "request_gid": "9b91b7c7-adf1-468b-bcd0-ef3306991bcf",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 0,
+  "photo_count": 0,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "Spokane, WA",
+  "date_opened": ""
+ },
+ "map": {
+  "center": null,
+  "bbox": null,
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [],
+ "panos": [],
+ "orthos": [],
+ "documents": [],
+ "doc_candidates": [],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 0
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 0
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 0
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages",
+ "daily": {
+  "date": "2026-10-29",
+  "day_number": 5,
+  "glance": {
+   "personnel": 0,
+   "work_assignments": 1,
+   "resources": 13,
+   "recon_observations": 0,
+   "safety_observations": 0,
+   "vessel_trips": 0,
+   "rr213_new": 0,
+   "hasp_acks": 0,
+   "air_readings": 0,
+   "photos": 0
+  },
+  "project_slug": "2611spokane"
+ }
+}
