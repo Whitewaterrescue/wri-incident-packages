@@ -2,7 +2,7 @@
  "slug": "2610open",
  "incident_name": "2610open \u2014 BNSF drill package 2026-10-29",
  "client": "WRI",
- "generated": "2026-10-30T22:24:04Z",
+ "generated": "2026-10-30T22:53:03Z",
  "draft": true,
  "request_gid": "ea8024e8-8f8e-4820-83e1-cabbfad3e0eb",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
@@ -17,7 +17,7 @@
  },
  "summary": {
   "recon_count": 3,
-  "photo_count": 4,
+  "photo_count": 2,
   "pano_count": 0,
   "ortho_count": 0,
   "location": "Missoula, MT",
@@ -50,22 +50,6 @@
   },
   {
    "oid": null,
-   "key": "ortho:2252e110de5f4faf9f5420ea20f95a30",
-   "type": "Drone ortho: 2610open drone mapping 2026-10-28",
-   "when": "",
-   "src": "assets/ortho/2252e110de5f4faf9f5420ea20f95a30.jpg",
-   "thumb": "assets/ortho/2252e110de5f4faf9f5420ea20f95a30_t.jpg"
-  },
-  {
-   "oid": null,
-   "key": "ortho:57ccd187733d42dd931577a27206ebb3",
-   "type": "Drone ortho: 2610open drone mapping 2026-10-29",
-   "when": "",
-   "src": "assets/ortho/57ccd187733d42dd931577a27206ebb3.jpg",
-   "thumb": "assets/ortho/57ccd187733d42dd931577a27206ebb3_t.jpg"
-  },
-  {
-   "oid": null,
    "key": "ortho:16c0dec007f447f5ab68bf81cbdd04e2",
    "type": "Drone ortho: 2610open drone mapping 2026-10-30",
    "when": "",
@@ -94,12 +78,6 @@
    "key": "ics220",
    "section": "ICS 220 \u2014 Air Operations Summary",
    "title": "ICS 220 \u2014 Air Operations Summary"
-  },
-  {
-   "id": "grp:Clarkfork_River_GRP_Points_2025:71:33",
-   "key": "grp",
-   "section": "Response Plan Strategy Sheets (GRP)",
-   "title": "Kona Bridge"
   }
  ],
  "manifest": {
@@ -127,12 +105,12 @@
    {
     "key": "photos",
     "label": "Recon photos",
-    "count": 4
+    "count": 2
    },
    {
     "key": "documents",
     "label": "Documents (WRI sign-in)",
-    "count": 4
+    "count": 3
    }
   ]
  },

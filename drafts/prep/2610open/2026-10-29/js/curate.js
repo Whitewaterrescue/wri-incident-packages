@@ -453,7 +453,9 @@
         fld("ecy.summary", "Summary", { area: true, rows: 4, mk: "ecy" }) +
         '<label class="nlab" for="ecyLessons">Lessons learned — one per line (Ecology requires at least three)</label>' +
         '<textarea class="narr" rows="4" id="ecyLessons">' + esc((E.lessons || []).join("\n")) + '</textarea>' +
-        '<div class="dsec">Deployment Drill Equipment List</div><div id="ecyEq"></div><button type="button" class="xpand" id="ecyEqAdd">+ add equipment</button>', true);
+        '<div class="dsec">Deployment Drill Equipment List (from the Resource Manager)</div><div id="ecyEq"></div><button type="button" class="xpand" id="ecyEqAdd">+ add equipment</button>' +
+        '<div class="dsec">Deployment Equipment Sourcing Documentation (from the Resource Manager)</div>' + fld("ecy.completed_by", "Form completed by", { mk: "ecy" }) +
+        '<div id="ecySrc"></div><button type="button" class="xpand" id="ecySrcAdd">+ add sourced resource</button>', true);
       if (isD) html += sec("DPX — summary (Table 4)",
         fld("dpx.locations", "Deployment location(s)") +
         '<div class="g3"><div>' + fld("dpx.start", "Time started", { ph: "0700" }) + '</div><div>' + fld("dpx.on_scene", "Time on scene", { ph: "0800" }) +
@@ -546,6 +548,7 @@
         $("ecyInc").onchange = function () { prp.doc.ecy.include = this.checked; prp.edited.ecy = true; };
         $("ecyLessons").oninput = function () { prp.doc.ecy.lessons = this.value.split(/\n+/).map(function (x) { return x.trim(); }).filter(Boolean); prp.edited.ecy = true; };
         $("ecyEqAdd").onclick = function () { (prp.doc.ecy.equipment = prp.doc.ecy.equipment || []).push({ wrrl: "", owner: "", desc: "" }); prp.edited.ecy = true; renderEcy(); };
+        $("ecySrcAdd").onclick = function () { (prp.doc.ecy.sourcing = prp.doc.ecy.sourcing || []).push({ org: "", wrrl: "", desc: "", location: "", called: "", eta: "" }); prp.edited.ecy = true; renderEcy(); };
       }
       renderUploads();
       $("tlAdd").onclick = function () { prp.doc.timeline.push({ date: (prp.doc.timeline[0] || {}).date || "", time: "", type: "Operations", event: "", scenario: false }); prp.edited.timeline = true; renderTimeline(); };
@@ -611,6 +614,17 @@
       }).join("") || '<div class="hint">No equipment rows.</div>';
       bindPrep($("ecyEq"));
       $("ecyEq").querySelectorAll("[data-eqrm]").forEach(function (b) { b.onclick = function () { rows.splice(+b.dataset.eqrm, 1); prp.edited.ecy = true; renderEcy(); }; });
+      var src = E.sourcing = E.sourcing || [];
+      $("ecySrc").innerHTML = src.map(function (r, i) {
+        var b = "ecy.sourcing." + i + ".";
+        return '<div class="sirow"><span class="ct">' + (i + 1) + '</span>' + fld(b + "org", "", { ph: "Organization", mk: "ecy" }) +
+          fld(b + "wrrl", "", { ph: "WRRL #", cls: "st", mk: "ecy" }) + fld(b + "desc", "", { ph: "Description of resource", mk: "ecy" }) +
+          fld(b + "location", "", { ph: "Location", mk: "ecy" }) + fld(b + "called", "", { ph: "Called out", cls: "st", mk: "ecy" }) +
+          fld(b + "eta", "", { ph: "ETA", cls: "st", mk: "ecy" }) +
+          '<button type="button" class="rm" data-srcrm="' + i + '" title="Remove">×</button></div>';
+      }).join("") || '<div class="hint">No sourced resources (none in the Resource Manager for this incident).</div>';
+      bindPrep($("ecySrc"));
+      $("ecySrc").querySelectorAll("[data-srcrm]").forEach(function (b) { b.onclick = function () { src.splice(+b.dataset.srcrm, 1); prp.edited.ecy = true; renderEcy(); }; });
     }
     function renderTimeline() {
       var rows = prp.doc.timeline;
