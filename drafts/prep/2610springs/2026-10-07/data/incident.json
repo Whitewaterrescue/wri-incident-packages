@@ -1,0 +1,199 @@
+{
+ "slug": "2610springs",
+ "incident_name": "2610springs \u2014 BNSF drill package 2026-10-07",
+ "client": "BNSF",
+ "generated": "2026-10-30T20:08:58Z",
+ "draft": true,
+ "request_gid": "9b344ea7-720f-4caa-8c50-31ea2ecb5712",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbz706GaoxSsHWs1VBREoNSJy_5KaNCaea0V95gq_D6hODR3YtNWjgi4t7a0HCjpwbhc/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 4,
+  "photo_count": 9,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "Glenwood Springs, CO",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   39.5582045053107,
+   -107.3749763187885
+  ],
+  "bbox": [
+   -107.416930577557,
+   39.5511753,
+   -107.33302206002,
+   39.5652337106214
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 302,
+   "att_id": 113,
+   "key": "302:113",
+   "type": "icp",
+   "when": 1791384300000,
+   "src": "assets/recon/302/0.jpg",
+   "thumb": "assets/recon/302/0_t.jpg"
+  },
+  {
+   "oid": 303,
+   "att_id": 114,
+   "key": "303:114",
+   "type": "boat_ramp",
+   "when": 1791390420000,
+   "src": "assets/recon/303/0.jpg",
+   "thumb": "assets/recon/303/0_t.jpg"
+  },
+  {
+   "oid": 304,
+   "att_id": 115,
+   "key": "304:115",
+   "type": "icp",
+   "when": 1791402540000,
+   "src": "assets/recon/304/0.jpg",
+   "thumb": "assets/recon/304/0_t.jpg"
+  },
+  {
+   "oid": 305,
+   "att_id": 116,
+   "key": "305:116",
+   "type": "boat_ramp",
+   "when": 1791402600000,
+   "src": "assets/recon/305/0.jpg",
+   "thumb": "assets/recon/305/0_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:16338c1c7b094e809020249b3591dcef",
+   "type": "Drone ortho: TwoRiverSet1",
+   "when": "",
+   "src": "assets/ortho/16338c1c7b094e809020249b3591dcef.jpg",
+   "thumb": "assets/ortho/16338c1c7b094e809020249b3591dcef_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:bc7435a788eb4eaa98384a51df08ab1a",
+   "type": "Drone ortho: Two Rivers Set 2",
+   "when": "",
+   "src": "assets/ortho/bc7435a788eb4eaa98384a51df08ab1a.jpg",
+   "thumb": "assets/ortho/bc7435a788eb4eaa98384a51df08ab1a_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:c6ff66724eab45c6a006307f677a290a",
+   "type": "Drone ortho: Two Rivers Set 2",
+   "when": "",
+   "src": "assets/ortho/c6ff66724eab45c6a006307f677a290a.jpg",
+   "thumb": "assets/ortho/c6ff66724eab45c6a006307f677a290a_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:daa51e235d294277bec73d9424bda213",
+   "type": "Drone ortho: Two Rivers Set 2",
+   "when": "",
+   "src": "assets/ortho/daa51e235d294277bec73d9424bda213.jpg",
+   "thumb": "assets/ortho/daa51e235d294277bec73d9424bda213_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:b35cf7d06d3e43289561bfd5f41a3fef",
+   "type": "Drone ortho: South Canyon Set 1",
+   "when": "",
+   "src": "assets/ortho/b35cf7d06d3e43289561bfd5f41a3fef.jpg",
+   "thumb": "assets/ortho/b35cf7d06d3e43289561bfd5f41a3fef_t.jpg"
+  }
+ ],
+ "panos": [],
+ "orthos": [],
+ "documents": [],
+ "doc_candidates": [
+  {
+   "id": "ics201:1Ptmh7B8sH-1LaslxY4v9sE7Dr6K1Ujoz",
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "title": "ICS 201 (latest version)"
+  },
+  {
+   "id": "ics205a",
+   "key": "ics205a",
+   "section": "ICS 205A \u2014 Communications List",
+   "title": "ICS 205A (26 contacts)"
+  },
+  {
+   "id": "hasp:69",
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "title": "HASP #69 (issued this day)"
+  },
+  {
+   "id": "grp:WRI_GRP_Universal_DEV:172:421",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Two Rivers City Park Boat Launch (GRP Capture UCO-54)"
+  },
+  {
+   "id": "grp:Upper_Colorado_GRP_Points_2025:58:58",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Two Rivers City Park Boat Launch"
+  },
+  {
+   "id": "grp:Upper_Colorado_GRP_Points_2025:59:59",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "South Canyon Rest Area Boat\nLaunch"
+  }
+ ],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 4
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 9
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 6
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages",
+ "prep": {
+  "date": "2026-10-07",
+  "project_slug": "2610springs"
+ }
+}
