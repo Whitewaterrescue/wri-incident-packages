@@ -2,9 +2,9 @@
  "slug": "2610springs",
  "incident_name": "2610springs",
  "client": "BNSF",
- "generated": "2026-10-20T16:29:33Z",
+ "generated": "2026-10-30T15:40:06Z",
  "draft": true,
- "request_gid": "dabf177c-35c2-474e-b15f-a1ea40894c7c",
+ "request_gid": "ecc504a9-62d4-4f46-b71b-d671eabb0444",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -12,7 +12,8 @@
   "map": true,
   "panos": true,
   "orthos": true,
-  "photos": true
+  "photos": true,
+  "documents": true
  },
  "summary": {
   "recon_count": 6,
@@ -40,6 +41,8 @@
  "photos": [
   {
    "oid": 302,
+   "att_id": 113,
+   "key": "302:113",
    "type": "icp",
    "when": 1791384300000,
    "src": "assets/recon/302/0.jpg",
@@ -47,6 +50,8 @@
   },
   {
    "oid": 303,
+   "att_id": 114,
+   "key": "303:114",
    "type": "boat_ramp",
    "when": 1791390420000,
    "src": "assets/recon/303/0.jpg",
@@ -54,6 +59,8 @@
   },
   {
    "oid": 304,
+   "att_id": 115,
+   "key": "304:115",
    "type": "icp",
    "when": 1791402540000,
    "src": "assets/recon/304/0.jpg",
@@ -61,6 +68,8 @@
   },
   {
    "oid": 305,
+   "att_id": 116,
+   "key": "305:116",
    "type": "boat_ramp",
    "when": 1791402600000,
    "src": "assets/recon/305/0.jpg",
@@ -167,6 +176,51 @@
    "when": ""
   }
  ],
+ "documents": [],
+ "doc_candidates": [
+  {
+   "id": "ics201:1Ptmh7B8sH-1LaslxY4v9sE7Dr6K1Ujoz",
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "title": "ICS201-1791383227961"
+  },
+  {
+   "id": "ics205a",
+   "key": "ics205a",
+   "section": "ICS 205A \u2014 Communications List",
+   "title": "ICS 205A \u2014 Communications List (27 contacts)"
+  },
+  {
+   "id": "hasp:71",
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "title": "HASP_BNSF_2610springs_10/07/2026"
+  },
+  {
+   "id": "ssp:10WZzTqdnMmLOmfcOu59VssliV7UFMNxoqKKU5YB-S7c",
+   "key": "ssp",
+   "section": "Site Safety Plan",
+   "title": "SSP-0037"
+  },
+  {
+   "id": "grp:WRI_GRP_Universal_DEV:172:421",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Two Rivers City Park Boat Launch (GRP Capture UCO-54)"
+  },
+  {
+   "id": "grp:Upper_Colorado_GRP_Points_2025:58:58",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Two Rivers City Park Boat Launch"
+  },
+  {
+   "id": "grp:Upper_Colorado_GRP_Points_2025:59:59",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "South Canyon Rest Area Boat\nLaunch"
+  }
+ ],
  "manifest": {
   "sections": [
    {
@@ -193,7 +247,13 @@
     "key": "photos",
     "label": "Recon photos",
     "count": 4
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 7
    }
   ]
- }
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages"
 }
