@@ -2,9 +2,9 @@
  "slug": "2610springs",
  "incident_name": "2610springs",
  "client": "BNSF",
- "generated": "2026-10-30T15:40:06Z",
+ "generated": "2026-10-30T20:03:45Z",
  "draft": true,
- "request_gid": "ecc504a9-62d4-4f46-b71b-d671eabb0444",
+ "request_gid": "687a1402-b99e-456f-b870-3dcee59d6d73",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -19,7 +19,7 @@
   "recon_count": 6,
   "photo_count": 4,
   "pano_count": 4,
-  "ortho_count": 5,
+  "ortho_count": 6,
   "location": "Glenwood Springs, CO",
   "date_opened": ""
  },
@@ -115,6 +115,18 @@
   }
  ],
  "orthos": [
+  {
+   "id": "dba778c93659444ca76694d32f5a95c3",
+   "name": "TwoRiversBase",
+   "png": "assets/ortho/dba778c93659444ca76694d32f5a95c3.png",
+   "bounds": [
+    39.549815907789146,
+    -107.33592957024148,
+    39.551754663481766,
+    -107.33210024643647
+   ],
+   "when": ""
+  },
   {
    "id": "16338c1c7b094e809020249b3591dcef",
    "name": "TwoRiverSet1",
@@ -241,7 +253,7 @@
    {
     "key": "orthos",
     "label": "Drone orthos",
-    "count": 5
+    "count": 6
    },
    {
     "key": "photos",
