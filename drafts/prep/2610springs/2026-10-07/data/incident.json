@@ -2,9 +2,9 @@
  "slug": "2610springs",
  "incident_name": "2610springs \u2014 BNSF drill package 2026-10-07",
  "client": "BNSF",
- "generated": "2026-10-30T20:08:58Z",
+ "generated": "2026-10-30T20:25:46Z",
  "draft": true,
- "request_gid": "9b344ea7-720f-4caa-8c50-31ea2ecb5712",
+ "request_gid": "0ed908e5-b4cb-4cc4-95ac-bd3325db1cca",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbz706GaoxSsHWs1VBREoNSJy_5KaNCaea0V95gq_D6hODR3YtNWjgi4t7a0HCjpwbhc/exec",
  "pin_required": true,
  "sections": {
@@ -17,7 +17,7 @@
  },
  "summary": {
   "recon_count": 4,
-  "photo_count": 9,
+  "photo_count": 10,
   "pano_count": 0,
   "ortho_count": 0,
   "location": "Glenwood Springs, CO",
@@ -74,6 +74,14 @@
    "when": 1791402600000,
    "src": "assets/recon/305/0.jpg",
    "thumb": "assets/recon/305/0_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:dba778c93659444ca76694d32f5a95c3",
+   "type": "Drone ortho: TwoRiversBase",
+   "when": "",
+   "src": "assets/ortho/dba778c93659444ca76694d32f5a95c3.jpg",
+   "thumb": "assets/ortho/dba778c93659444ca76694d32f5a95c3_t.jpg"
   },
   {
    "oid": null,
@@ -182,7 +190,7 @@
    {
     "key": "photos",
     "label": "Recon photos",
-    "count": 9
+    "count": 10
    },
    {
     "key": "documents",
