@@ -1,0 +1,304 @@
+{
+ "slug": "2610open",
+ "incident_name": "2610open",
+ "client": "WRI",
+ "generated": "2026-10-30T22:37:37Z",
+ "draft": true,
+ "request_gid": "55863ee9-5b21-45fa-bad3-c5a1ba6693f6",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 18,
+  "photo_count": 14,
+  "pano_count": 3,
+  "ortho_count": 3,
+  "location": "Missoula, MT",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   23.68418244444445,
+   -57.284301888889
+  ],
+  "bbox": [
+   -114.568602777778,
+   1e-06,
+   -1e-06,
+   47.3683638888889
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 310,
+   "att_id": 120,
+   "key": "310:120",
+   "type": "injured_wildlife",
+   "when": 1792992840000,
+   "src": "assets/recon/310/0.jpg",
+   "thumb": "assets/recon/310/0_t.jpg"
+  },
+  {
+   "oid": 311,
+   "att_id": 121,
+   "key": "311:121",
+   "type": "fish_kill",
+   "when": 1792992960000,
+   "src": "assets/recon/311/0.jpg",
+   "thumb": "assets/recon/311/0_t.jpg"
+  },
+  {
+   "oid": 312,
+   "att_id": 122,
+   "key": "312:122",
+   "type": "river_hazard",
+   "when": 1792993020000,
+   "src": "assets/recon/312/0.jpg",
+   "thumb": "assets/recon/312/0_t.jpg"
+  },
+  {
+   "oid": 313,
+   "att_id": 123,
+   "key": "313:123",
+   "type": "current_boom_site",
+   "when": 1793027820000,
+   "src": "assets/recon/313/0.jpg",
+   "thumb": "assets/recon/313/0_t.jpg"
+  },
+  {
+   "oid": 315,
+   "att_id": 124,
+   "key": "315:124",
+   "type": "other_action",
+   "when": 1793031300000,
+   "src": "assets/recon/315/0.jpg",
+   "thumb": "assets/recon/315/0_t.jpg"
+  },
+  {
+   "oid": 316,
+   "att_id": 125,
+   "key": "316:125",
+   "type": "drone_flight",
+   "when": 1793042640000,
+   "src": "assets/recon/316/0.jpg",
+   "thumb": "assets/recon/316/0_t.jpg"
+  },
+  {
+   "oid": 317,
+   "att_id": 126,
+   "key": "317:126",
+   "type": "drone_flight",
+   "when": 1793042760000,
+   "src": "assets/recon/317/0.jpg",
+   "thumb": "assets/recon/317/0_t.jpg"
+  },
+  {
+   "oid": 317,
+   "att_id": 127,
+   "key": "317:127",
+   "type": "drone_flight",
+   "when": 1793042760000,
+   "src": "assets/recon/317/1.jpg",
+   "thumb": "assets/recon/317/1_t.jpg"
+  },
+  {
+   "oid": 318,
+   "att_id": 128,
+   "key": "318:128",
+   "type": "current_boom_site",
+   "when": 1760042160000,
+   "src": "assets/recon/318/0.jpg",
+   "thumb": "assets/recon/318/0_t.jpg"
+  },
+  {
+   "oid": 325,
+   "att_id": 133,
+   "key": "325:133",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/0.jpg",
+   "thumb": "assets/recon/325/0_t.jpg"
+  },
+  {
+   "oid": 325,
+   "att_id": 134,
+   "key": "325:134",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/1.jpg",
+   "thumb": "assets/recon/325/1_t.jpg"
+  },
+  {
+   "oid": 325,
+   "att_id": 135,
+   "key": "325:135",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/2.jpg",
+   "thumb": "assets/recon/325/2_t.jpg"
+  },
+  {
+   "oid": 325,
+   "att_id": 136,
+   "key": "325:136",
+   "type": "recovery_complete",
+   "when": 1793216400000,
+   "src": "assets/recon/325/3.jpg",
+   "thumb": "assets/recon/325/3_t.jpg"
+  },
+  {
+   "oid": 326,
+   "att_id": 137,
+   "key": "326:137",
+   "type": "current_boom_site",
+   "when": 1793287200000,
+   "src": "assets/recon/326/0.jpg",
+   "thumb": "assets/recon/326/0_t.jpg"
+  }
+ ],
+ "panos": [
+  {
+   "id": "0c76db2d-3db3-4745-87e1-ee868a2f3e9b",
+   "name": "2610open 360 \u2014 Site 4",
+   "site_label": "50 m AGL",
+   "when": "2026-10-30 14:19:34",
+   "lon": -114.01474999999999,
+   "lat": 46.889692499999995,
+   "viewer_url": "panos/pano.html?tiles=tiles/0c76db2d-3db3-4745-87e1-ee868a2f3e9b&title=2610open%20360%20%E2%80%94%20Site%204"
+  },
+  {
+   "id": "987c91da-6ce1-4249-a751-64da6f70abb2",
+   "name": "2610open 360 \u2014 Site 3",
+   "site_label": "28 m AGL",
+   "when": "2026-10-29 11:11:44",
+   "lon": -114.01442772222221,
+   "lat": 46.890175944444444,
+   "viewer_url": "panos/pano.html?tiles=tiles/987c91da-6ce1-4249-a751-64da6f70abb2&title=2610open%20360%20%E2%80%94%20Site%203"
+  },
+  {
+   "id": "2846f145-4b16-4e17-9c73-f346b8d9fc57",
+   "name": "2610open 360 \u2014 Site 1",
+   "site_label": "17 m AGL",
+   "when": "2026-10-28 13:37:54",
+   "lon": -114.1509628888889,
+   "lat": 46.89908641666667,
+   "viewer_url": "panos/pano.html?tiles=tiles/2846f145-4b16-4e17-9c73-f346b8d9fc57&title=2610open%20360%20%E2%80%94%20Site%201"
+  }
+ ],
+ "orthos": [
+  {
+   "id": "2252e110de5f4faf9f5420ea20f95a30",
+   "name": "2610open drone mapping 2026-10-28",
+   "png": "assets/ortho/2252e110de5f4faf9f5420ea20f95a30.png",
+   "bounds": [
+    46.89677647477146,
+    -114.15253209923796,
+    46.90065220035761,
+    -114.14881805834817
+   ],
+   "when": ""
+  },
+  {
+   "id": "7176bbf4a5b24492898175fc8c30fc11",
+   "name": "2610open drone mapping 2026-10-28",
+   "png": "assets/ortho/7176bbf4a5b24492898175fc8c30fc11.png",
+   "bounds": [
+    46.889474696862166,
+    -114.01523625341805,
+    46.89049874246476,
+    -114.01346700047917
+   ],
+   "when": ""
+  },
+  {
+   "id": "16c0dec007f447f5ab68bf81cbdd04e2",
+   "name": "2610open drone mapping 2026-10-30",
+   "png": "assets/ortho/16c0dec007f447f5ab68bf81cbdd04e2.png",
+   "bounds": [
+    46.88945142192381,
+    -114.01562319012227,
+    46.89070165134356,
+    -114.01281580313882
+   ],
+   "when": ""
+  }
+ ],
+ "documents": [],
+ "doc_candidates": [
+  {
+   "id": "ssp:1iolSUlxog4tPMrJcMMCBCE_UvaLDdmGo6LW6Knx_aWg",
+   "key": "ssp",
+   "section": "Site Safety Plan",
+   "title": "SSP-0040"
+  },
+  {
+   "id": "drone",
+   "key": "drone",
+   "section": "Drone Flight Report",
+   "title": "Drone Flight Report (21 flights)"
+  },
+  {
+   "id": "ics220",
+   "key": "ics220",
+   "section": "ICS 220 \u2014 Air Operations Summary",
+   "title": "ICS 220 \u2014 Air Operations Summary (4 flights, 5 missions)"
+  },
+  {
+   "id": "ics213rr:1grDRCWdUYxpaLkvIJEVPKnJzXo50RmZW",
+   "key": "ics213rr",
+   "section": "ICS 213RR \u2014 Resource Requests",
+   "title": "REQ-0049"
+  },
+  {
+   "id": "grp:Clarkfork_River_GRP_Points_2025:71:33",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Kona Bridge"
+  }
+ ],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 18
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 3
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 3
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 14
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 5
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages"
+}
