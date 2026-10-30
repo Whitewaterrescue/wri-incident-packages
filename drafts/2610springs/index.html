@@ -247,6 +247,11 @@
         .map(([k, v]) => `<div class="stat"><div class="stat-v">${esc(v == null ? "—" : v)}</div><div class="stat-k">${esc(k)}</div></div>`).join("");
       $("briefingNote").textContent = "The full daily report (narrative, personnel, safety and documents) is sent to the client as a PDF.";
     }
+    if (d.prep) {
+      $("title").textContent = d.incident_name;
+      document.querySelector(".hero .eyebrow").textContent = "Whitewater Rescue Institute · BNSF PREP Drill Package";
+      $("briefingNote").textContent = "The BNSF exercise documentation (filled form, evaluation, photo log, sign-in and attachments) is built from the editor and emailed as a PDF.";
+    }
     renderTabs(d);
     if (EDIT && window.initCuration) window.initCuration(d);
     if (d.draft) $("draftbanner").hidden = false;

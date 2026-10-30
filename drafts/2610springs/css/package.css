@@ -162,3 +162,34 @@ a.docrow:hover{border-color:#EC2329}
 #curate .nlab{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-top:4px}
 #curate .rrow{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--text-muted);margin:3px 0}
 #curate .rrow input{width:90px;background:transparent;border:1px solid var(--border);border-radius:6px;color:inherit;padding:3px 6px;text-align:right}
+
+/* ?edit=1 prep mode: the BNSF PREP drill form (curate.js renderPrep) -- a wider rail */
+body.editing.prepmode #curate{width:min(620px,100vw)}
+body.editing.prepmode main.wrap, body.editing.prepmode .foot{margin-right:min(620px,100vw)}
+@media (max-width:900px){body.editing.prepmode main.wrap, body.editing.prepmode .foot{margin-right:0}}
+#curate .psec{border:1px solid var(--border);border-radius:8px;margin:8px 0;padding:0 10px}
+#curate .psec>summary{cursor:pointer;padding:9px 0;font-weight:600;font-size:13px}
+#curate .psec[open]>summary{border-bottom:1px solid var(--border);margin-bottom:6px}
+#curate .pin{width:100%;background:transparent;border:1px solid var(--border);border-radius:6px;color:inherit;padding:5px 7px;font:inherit;font-size:12.5px;margin:2px 0 6px}
+#curate select.pin{background:var(--panel)}
+#curate .g2,#curate .g3,#curate .g4,#curate .g3a{display:grid;gap:6px}
+#curate .g2{grid-template-columns:1fr 1fr}
+#curate .g3{grid-template-columns:1fr 1fr 1fr}
+#curate .g4{grid-template-columns:2fr 1fr 1fr 2fr}
+#curate .g3a{grid-template-columns:3fr 1.2fr 1.6fr}
+#curate .eqrow{display:grid;grid-template-columns:1.4fr .8fr 2.4fr;gap:6px;align-items:center;font-size:12px;color:var(--text-muted)}
+#curate .sirow{display:grid;grid-template-columns:22px 1.5fr 1.1fr 1.3fr .5fr 1.8fr 18px;gap:4px;align-items:center}
+#curate .sirow .pin{margin:1px 0;font-size:11.5px;padding:4px 5px}
+#curate .pcard{border-top:1px solid var(--border);padding:8px 0}
+#curate .pname{font-size:12.5px;font-weight:600;margin-bottom:4px}
+#curate .pills{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-bottom:4px}
+#curate .pill{background:transparent;border:1px solid var(--border);color:var(--text-muted);border-radius:999px;font:inherit;font-size:11.5px;padding:3px 10px;cursor:pointer}
+#curate .pill.on{background:var(--accent);border-color:var(--accent);color:#fff}
+#curate .why{font-size:11.5px;color:var(--text-muted);margin:2px 0 4px}
+#curate .ai{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;color:#171919;background:#F5B400;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:middle}
+#curate .addrow.off{opacity:.45}
+@media (max-width:600px){#curate .g3,#curate .g4,#curate .g3a,#curate .eqrow{grid-template-columns:1fr}#curate .sirow{grid-template-columns:22px 1fr 1fr 18px}}
+
+/* busy state (drill package uploads) */
+.spin{display:inline-block;width:.9em;height:.9em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-2px}
+@keyframes spin{to{transform:rotate(360deg)}}

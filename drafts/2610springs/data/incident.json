@@ -2,9 +2,9 @@
  "slug": "2610springs",
  "incident_name": "2610springs",
  "client": "BNSF",
- "generated": "2026-10-30T20:03:45Z",
+ "generated": "2026-10-30T21:43:57Z",
  "draft": true,
- "request_gid": "687a1402-b99e-456f-b870-3dcee59d6d73",
+ "request_gid": "e072f1ba-03ad-4035-9b7a-282d627437a4",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
