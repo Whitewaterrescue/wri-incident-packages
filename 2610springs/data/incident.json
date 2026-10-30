@@ -1,0 +1,247 @@
+{
+ "slug": "2610springs",
+ "incident_name": "2610springs",
+ "client": "BNSF",
+ "generated": "2026-10-30T15:43:56Z",
+ "draft": false,
+ "request_gid": "ecc504a9-62d4-4f46-b71b-d671eabb0444",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": false,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 6,
+  "photo_count": 4,
+  "pano_count": 4,
+  "ortho_count": 5,
+  "location": "Glenwood Springs, CO",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   39.5582045053107,
+   -107.3749763187885
+  ],
+  "bbox": [
+   -107.416930577557,
+   39.5511753,
+   -107.33302206002,
+   39.5652337106214
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 302,
+   "att_id": 113,
+   "key": "302:113",
+   "type": "icp",
+   "when": 1791384300000,
+   "src": "assets/recon/302/0.jpg",
+   "thumb": "assets/recon/302/0_t.jpg"
+  },
+  {
+   "oid": 303,
+   "att_id": 114,
+   "key": "303:114",
+   "type": "boat_ramp",
+   "when": 1791390420000,
+   "src": "assets/recon/303/0.jpg",
+   "thumb": "assets/recon/303/0_t.jpg"
+  },
+  {
+   "oid": 304,
+   "att_id": 115,
+   "key": "304:115",
+   "type": "icp",
+   "when": 1791402540000,
+   "src": "assets/recon/304/0.jpg",
+   "thumb": "assets/recon/304/0_t.jpg"
+  },
+  {
+   "oid": 305,
+   "att_id": 116,
+   "key": "305:116",
+   "type": "boat_ramp",
+   "when": 1791402600000,
+   "src": "assets/recon/305/0.jpg",
+   "thumb": "assets/recon/305/0_t.jpg"
+  }
+ ],
+ "panos": [
+  {
+   "id": "ff23ff52-6a03-4531-983f-5ca4591835c1",
+   "name": "South Canyon Set 1 Pano",
+   "site_label": "31 m AGL",
+   "when": "2026-10-07 14:36:40",
+   "lon": -107.41697425,
+   "lat": 39.56492777777777,
+   "viewer_url": "panos/pano.html?tiles=tiles/ff23ff52-6a03-4531-983f-5ca4591835c1&title=South%20Canyon%20Set%201%20Pano"
+  },
+  {
+   "id": "f3acd606-429b-4547-9e30-1eb51a15011a",
+   "name": "SouthCanyon_Base_Pano",
+   "site_label": "10 m AGL",
+   "when": "2026-10-07 13:40:14",
+   "lon": -107.41726758333334,
+   "lat": 39.56506105555555,
+   "viewer_url": "panos/pano.html?tiles=tiles/f3acd606-429b-4547-9e30-1eb51a15011a&title=SouthCanyon_Base_Pano"
+  },
+  {
+   "id": "9a9851c2-2024-4cba-9a60-6120ff34af8b",
+   "name": "Two Rivers Set 2",
+   "site_label": "61 m AGL",
+   "when": "2026-10-07 11:52:32",
+   "lon": -107.33405366666666,
+   "lat": 39.55071608333332,
+   "viewer_url": "panos/pano.html?tiles=tiles/9a9851c2-2024-4cba-9a60-6120ff34af8b&title=Two%20Rivers%20Set%202"
+  },
+  {
+   "id": "e5fefe84-8e2a-4436-867c-1390dcd15c51",
+   "name": "2610springs 360 \u2014 Site 1",
+   "site_label": "23 m AGL",
+   "when": "2026-10-07 11:20:18",
+   "lon": -107.33357563888887,
+   "lat": 39.55064794444443,
+   "viewer_url": "panos/pano.html?tiles=tiles/e5fefe84-8e2a-4436-867c-1390dcd15c51&title=2610springs%20360%20%E2%80%94%20Site%201"
+  }
+ ],
+ "orthos": [
+  {
+   "id": "16338c1c7b094e809020249b3591dcef",
+   "name": "TwoRiverSet1",
+   "png": "assets/ortho/16338c1c7b094e809020249b3591dcef.png",
+   "bounds": [
+    39.54896531927091,
+    -107.33526796465794,
+    39.551505055722124,
+    -107.32999995612994
+   ],
+   "when": ""
+  },
+  {
+   "id": "bc7435a788eb4eaa98384a51df08ab1a",
+   "name": "Two Rivers Set 2",
+   "png": "assets/ortho/bc7435a788eb4eaa98384a51df08ab1a.png",
+   "bounds": [
+    39.548949842928,
+    -107.3352996406629,
+    39.551544027634876,
+    -107.33002416101567
+   ],
+   "when": ""
+  },
+  {
+   "id": "c6ff66724eab45c6a006307f677a290a",
+   "name": "Two Rivers Set 2",
+   "png": "assets/ortho/c6ff66724eab45c6a006307f677a290a.png",
+   "bounds": [
+    39.548949517896716,
+    -107.3353003512479,
+    39.55154580866856,
+    -107.33002335074731
+   ],
+   "when": ""
+  },
+  {
+   "id": "daa51e235d294277bec73d9424bda213",
+   "name": "Two Rivers Set 2",
+   "png": "assets/ortho/daa51e235d294277bec73d9424bda213.png",
+   "bounds": [
+    39.54895097179531,
+    -107.33529994610531,
+    39.55154739528602,
+    -107.33002728683007
+   ],
+   "when": ""
+  },
+  {
+   "id": "b35cf7d06d3e43289561bfd5f41a3fef",
+   "name": "South Canyon Set 1",
+   "png": "assets/ortho/b35cf7d06d3e43289561bfd5f41a3fef.png",
+   "bounds": [
+    39.56401732050891,
+    -107.41792434869419,
+    39.565513293207395,
+    -107.41498216881642
+   ],
+   "when": ""
+  }
+ ],
+ "documents": [
+  {
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "count": 1,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=395ea7e7e37646028dc8d54d4f94f864"
+  },
+  {
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "count": 1,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=d9fbb2ddca1d44e1bd10c021fb3b4ed6"
+  },
+  {
+   "key": "ssp",
+   "section": "Site Safety Plan",
+   "count": 1,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=65aef771d0e64c1887b494ae0e2a8e21"
+  },
+  {
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "count": 3,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=9ebb07a0700b476c80c733272f878da8"
+  },
+  {
+   "key": "briefing",
+   "section": "Full incident briefing (all documents)",
+   "count": null,
+   "url": "https://wrienviro.maps.arcgis.com/home/item.html?id=f7413df49a7b49faaa5b5f2489977722"
+  }
+ ],
+ "doc_candidates": [],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 6
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 4
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 5
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 4
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 4
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages"
+}
