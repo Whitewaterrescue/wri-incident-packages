@@ -94,7 +94,9 @@
         '</div>' +
         '<div id="curMsg" class="hint"></div>' +
       '</div>' +
-      '<footer><button class="btn" id="curSave">Save</button><button class="btn primary" id="curPublish">Publish</button></footer>';
+      '<footer><button class="btn" id="curSave">Save</button>' +
+        (isPrep ? '<button class="btn" id="curPreview" title="Build the PDF from these edits and email it to WRI staff only (not published)">Preview PDF</button>' : '') +
+        '<button class="btn primary" id="curPublish">Publish</button></footer>';
     document.body.appendChild(el);
 
     function itemList(kind, label, items) {
@@ -420,6 +422,9 @@
       var sec = function (title, body, open) { return '<details class="psec"' + (open ? " open" : "") + '><summary>' + esc(title) + '</summary>' + body + '</details>'; };
       var html = '<div class="csec"><div class="lbl ttl">BNSF drill form <span class="ct">' +
         (Object.keys(prp.marks).length ? "AI draft + data — review every section" : "pre-filled from the data") + '</span></div>';
+      var pv = savedCur && savedCur.prep_preview;
+      if (pv && pv.pdf_url) html += '<div class="why">Latest preview PDF (' + esc(new Date(pv.at).toLocaleString()) + '): <a href="' + esc(pv.pdf_url) +
+        '" target="_blank" rel="noopener">open</a> (WRI ArcGIS sign-in). Preview again after more edits; Publish when it looks right.</div>';
       if (!d.site_notes) d.site_notes = { include: true, site: "", place: "", date: "", overview: "", rec_heading: "Observations and Recommendations", rec_intro: "", groups: [], conclusion: "" };
       html += sec("Site Assessment Notes (page 1)",
         '<div class="why">The package opens with this page (same layout as the Hobson / Argentine Yard notes), and the publish email carries it as a Word file too. Blank line = new paragraph; one bullet per line.</div>' +
@@ -713,7 +718,7 @@
       });
     }
 
-    function busy(b) { $("curSave").disabled = b; $("curPublish").disabled = b; }
+    function busy(b) { $("curSave").disabled = b; $("curPublish").disabled = b; if ($("curPreview")) $("curPreview").disabled = b; }
     function pendingUploads() { return state.added.some(function (a) { return !a.file_id && /uploading/.test(a.status); }); }
 
     $("curSave").onclick = function () {
@@ -723,6 +728,18 @@
         .then(function (j) { msg(j && j.ok ? "Saved." : "Save failed: " + ((j && j.error) || "unknown"), !(j && j.ok)); })
         .catch(function (e) { msg("Save failed: " + e.message, true); })
         .then(function () { busy(false); });
+    };
+    if ($("curPreview")) $("curPreview").onclick = function () {
+      if (pendingUploads()) { msg("Wait for the uploads to finish.", true); return; }
+      var b = $("curPreview"); busy(true); b.innerHTML = '<span class="spin"></span> Preview';
+      msg("Saving and building a preview PDF…");
+      api("package-preview", { curation_json: JSON.stringify(fullCuration()) })
+        .then(function (j) {
+          if (j && j.ok) msg("Preview is building (a few minutes). It is emailed to WRI staff with the PDF attached, and the link shows here next time you open the editor. Nothing is published.");
+          else msg("Preview failed: " + ((j && j.error) || "unknown"), true);
+        })
+        .catch(function (e) { msg("Preview failed: " + e.message, true); })
+        .then(function () { busy(false); b.textContent = "Preview PDF"; });
     };
     $("curPublish").onclick = function () {
       if (pendingUploads()) { msg("Wait for the photo uploads to finish.", true); return; }

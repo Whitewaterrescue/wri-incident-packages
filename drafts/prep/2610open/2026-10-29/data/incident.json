@@ -2,7 +2,7 @@
  "slug": "2610open",
  "incident_name": "2610open \u2014 BNSF drill package 2026-10-29",
  "client": "WRI",
- "generated": "2026-10-30T22:01:55Z",
+ "generated": "2026-10-30T22:24:04Z",
  "draft": true,
  "request_gid": "ea8024e8-8f8e-4820-83e1-cabbfad3e0eb",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
@@ -17,7 +17,7 @@
  },
  "summary": {
   "recon_count": 3,
-  "photo_count": 5,
+  "photo_count": 4,
   "pano_count": 0,
   "ortho_count": 0,
   "location": "Missoula, MT",
@@ -55,14 +55,6 @@
    "when": "",
    "src": "assets/ortho/2252e110de5f4faf9f5420ea20f95a30.jpg",
    "thumb": "assets/ortho/2252e110de5f4faf9f5420ea20f95a30_t.jpg"
-  },
-  {
-   "oid": null,
-   "key": "ortho:7176bbf4a5b24492898175fc8c30fc11",
-   "type": "Drone ortho: 2610open drone mapping 2026-10-28",
-   "when": "",
-   "src": "assets/ortho/7176bbf4a5b24492898175fc8c30fc11.jpg",
-   "thumb": "assets/ortho/7176bbf4a5b24492898175fc8c30fc11_t.jpg"
   },
   {
    "oid": null,
@@ -135,7 +127,7 @@
    {
     "key": "photos",
     "label": "Recon photos",
-    "count": 5
+    "count": 4
    },
    {
     "key": "documents",

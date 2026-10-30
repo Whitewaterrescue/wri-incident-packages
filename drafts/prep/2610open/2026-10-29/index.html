@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div id="draftbanner" hidden>DRAFT — NOT PUBLIC. Review, curate, then publish.</div>
+<div id="draftbanner" hidden>DRAFT — NOT PUBLIC. Review, curate, then publish. <a id="draftEdit" href="?edit=1">Edit package &rsaquo;</a></div>
 
 <header class="hero">
   <div class="wrap">
@@ -254,7 +254,7 @@
     }
     renderTabs(d);
     if (EDIT && window.initCuration) window.initCuration(d);
-    if (d.draft) $("draftbanner").hidden = false;
+    if (d.draft) { $("draftbanner").hidden = false; $("draftEdit").hidden = EDIT; }
   }
 
   async function load(){
