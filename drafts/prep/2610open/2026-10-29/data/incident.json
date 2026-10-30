@@ -1,0 +1,122 @@
+{
+ "slug": "2610open",
+ "incident_name": "2610open \u2014 BNSF drill package 2026-10-29",
+ "client": "WRI",
+ "generated": "2026-10-30T21:56:19Z",
+ "draft": true,
+ "request_gid": "ea8024e8-8f8e-4820-83e1-cabbfad3e0eb",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 3,
+  "photo_count": 2,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "Missoula, MT",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   23.44497852739525,
+   -57.007451716131996
+  ],
+  "bbox": [
+   -114.014902432264,
+   1e-06,
+   -1e-06,
+   46.8899560547905
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 326,
+   "att_id": 137,
+   "key": "326:137",
+   "type": "current_boom_site",
+   "when": 1793287200000,
+   "src": "assets/recon/326/0.jpg",
+   "thumb": "assets/recon/326/0_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:16c0dec007f447f5ab68bf81cbdd04e2",
+   "type": "Drone ortho: 2610open drone mapping 2026-10-30",
+   "when": "",
+   "src": "assets/ortho/16c0dec007f447f5ab68bf81cbdd04e2.jpg",
+   "thumb": "assets/ortho/16c0dec007f447f5ab68bf81cbdd04e2_t.jpg"
+  }
+ ],
+ "panos": [],
+ "orthos": [],
+ "documents": [],
+ "doc_candidates": [
+  {
+   "id": "ics201:16SCqiRFxWwRBXjo2XCWu69_oFE9oBjdW",
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "title": "ICS 201"
+  },
+  {
+   "id": "drone",
+   "key": "drone",
+   "section": "Drone Flight Report",
+   "title": "Drone Flight Report (9 flights)"
+  },
+  {
+   "id": "ics220",
+   "key": "ics220",
+   "section": "ICS 220 \u2014 Air Operations Summary",
+   "title": "ICS 220 \u2014 Air Operations Summary"
+  }
+ ],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 3
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 2
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 3
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages",
+ "prep": {
+  "date": "2026-10-29",
+  "project_slug": "2610open"
+ }
+}

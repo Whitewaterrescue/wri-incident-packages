@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WRI Incident Package</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=Alexandria:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="css/package.css">
+</head>
+<body>
+
+<!-- Draft gate: a draft (not yet published) hides everything behind a PIN overlay + banner.
+     Phase 1 recon comes from the already-public view, so the gate is an advisory "not public yet"
+     control; Phase 3 moves genuinely private sections behind a post-PIN data.enc fetch. -->
+<div id="gate" hidden>
+  <div class="gatebox">
+    <div class="gatelogo">WRI</div>
+    <h1>Incident package — draft</h1>
+    <p>This package is not published yet. Enter the review PIN to preview it.</p>
+    <input id="gatePin" inputmode="numeric" maxlength="8" placeholder="PIN" autocomplete="off">
+    <button class="btn primary" id="gateBtn">View draft</button>
+    <div class="gateErr" id="gateErr" hidden></div>
+  </div>
+</div>
+
+<div id="draftbanner" hidden>DRAFT — NOT PUBLIC. Review, curate, then publish.</div>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="wri-logo.png" alt="Whitewater Rescue Institute">
+    <div class="eyebrow">Whitewater Rescue Institute · Incident Package</div>
+    <h1 id="title">Loading…</h1>
+    <div class="meta" id="heroMeta"></div>
+  </div>
+</header>
+
+<nav class="tabs wrap" id="tabs" hidden></nav>
+
+<main class="wrap" id="main">
+  <section id="sec-summary" class="section" hidden>
+    <h2>Summary</h2>
+    <div class="stats" id="stats"></div>
+    <p class="muted" id="summaryNote"></p>
+    <p class="muted" id="briefingNote">The official incident documents (ICS 201, 205A, HASP and others) are available to WRI staff with an ArcGIS sign-in.</p>
+  </section>
+
+  <section id="sec-map" class="section" hidden>
+    <h2>Incident map</h2>
+    <p class="muted">Recon observations logged in the field. Tap a point for its photos and detail.</p>
+    <div id="map"></div>
+  </section>
+
+  <section id="sec-panos" class="section" hidden>
+    <h2>360° panoramas</h2>
+    <p class="muted">Immersive drone spheres. Tap to look around; drag to pan.</p>
+    <div class="gallery" id="panoGallery"></div>
+  </section>
+
+  <section id="sec-orthos" class="section" hidden>
+    <h2>Drone orthomosaics</h2>
+    <p class="muted">Stitched aerial imagery of the site. They also overlay on the incident map.</p>
+    <div class="gallery" id="orthoGallery"></div>
+  </section>
+
+  <section id="sec-photos" class="section" hidden>
+    <h2>Recon photos</h2>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section id="sec-daily" class="section" hidden>
+    <h2>Daily reports</h2>
+    <p class="muted">One report per day of the response. Each opens as a photo page; the full report PDF needs a WRI ArcGIS sign-in.</p>
+    <div class="doclist" id="dailyList"></div>
+  </section>
+
+  <section id="sec-documents" class="section" hidden>
+    <h2>Documents</h2>
+    <p class="muted" id="docNote">Official incident documents (ICS 201, 205A, HASP and others). Each opens in ArcGIS Online and needs a WRI sign-in.</p>
+    <div class="doclist" id="docList"></div>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <div>Generated <span id="genDate"></span> · Frozen snapshot — data is a point-in-time copy.</div>
+  <div class="muted" id="footSlug"></div>
+</footer>
+
+<!-- lightbox -->
+<div id="lightbox" hidden><img id="lbImg" alt=""><button id="lbClose" aria-label="Close">×</button></div>
+
+<!-- ?edit=1 curation rail is injected by curate.js -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="js/map.js"></script>
+<script src="js/curate.js"></script>
+<script>
+(() => {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const params = new URLSearchParams(location.search);
+  const PRINT = params.get("print") === "1";
+  const EDIT = params.get("edit") === "1";
+  if (PRINT) document.body.classList.add("print");
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  let DATA = null;
+
+  function showSection(key, on){ const el = $("sec-" + key); if (el) el.hidden = !on; }
+
+  function renderStats(d){
+    const s = d.summary || {};
+    const tiles = [
+      ["Recon points", s.recon_count],
+      ["Photos", s.photo_count],
+      ["360° panoramas", s.pano_count],
+      ["Drone orthos", s.ortho_count],
+      ["Location", s.location || "—"],
+    ].filter(([k, v]) => k === "Location" || (v != null));
+    $("stats").innerHTML = tiles.map(([k, v]) =>
+      `<div class="stat"><div class="stat-v">${esc(v)}</div><div class="stat-k">${esc(k)}</div></div>`).join("");
+    $("summaryNote").textContent = d.draft
+      ? "This is a draft preview. Nothing here is public until it is published."
+      : "";
+  }
+
+  function renderGallery(d){
+    const g = $("gallery");
+    if (!d.photos || !d.photos.length){ g.innerHTML = '<p class="muted">No recon photos in this package.</p>'; return; }
+    g.innerHTML = d.photos.map((p, i) =>
+      `<figure class="shot" data-photo="${esc(p.key || i)}"><img loading="lazy" src="${esc(p.thumb || p.src)}" data-full="${esc(p.src)}" alt="${esc(p.type || "Recon photo")}">`
+      + `<figcaption>${esc(p.type || "")}${p.when ? " · " + esc(fmtDate(p.when)) : ""}</figcaption></figure>`).join("");
+    for (const img of g.querySelectorAll("img")) img.onclick = () => openLightbox(img.dataset.full);
+  }
+
+  function fmtDate(v){
+    const n = Number(v);
+    const dte = isFinite(n) && n > 1e11 ? new Date(n) : new Date(v);
+    return isNaN(dte) ? String(v) : dte.toLocaleDateString(undefined, {year:"numeric",month:"short",day:"numeric"});
+  }
+
+  function renderPanos(d){
+    const g = $("panoGallery");
+    const panos = d.panos || [];
+    if (!panos.length){ g.innerHTML = '<p class="muted">No 360° panoramas in this package.</p>'; return; }
+    g.innerHTML = panos.map(p =>
+      `<a class="shot pano" data-pano="${esc(p.id)}" href="${esc(p.viewer_url)}" target="_blank" rel="noopener">`
+      + `<div class="pano-thumb"><span class="pano-ic">360°</span></div>`
+      + `<figcaption>${esc(p.name || "Panorama")}${p.site_label ? " · " + esc(p.site_label) : ""}</figcaption></a>`).join("");
+  }
+
+  function renderOrthos(d){
+    const g = $("orthoGallery");
+    const orthos = d.orthos || [];
+    if (!orthos.length){ g.innerHTML = '<p class="muted">No drone orthomosaics in this package.</p>'; return; }
+    g.innerHTML = orthos.map(o =>
+      `<figure class="shot" data-ortho="${esc(o.id)}"><img loading="lazy" src="${esc(o.png)}" data-full="${esc(o.png)}" alt="${esc(o.name || "Ortho")}">`
+      + `<figcaption>${esc(o.name || "Orthomosaic")}</figcaption></figure>`).join("");
+    for (const img of g.querySelectorAll("img")) img.onclick = () => openLightbox(img.dataset.full);
+  }
+
+  function renderDocs(d){
+    const pub = d.documents || [], cand = d.doc_candidates || [];
+    if (pub.length){
+      $("docList").innerHTML = pub.map(r =>
+        `<a class="docrow" href="${esc(r.url)}" target="_blank" rel="noopener"><span class="doct">${esc(r.section)}</span>`
+        + `${r.count > 1 ? `<span class="docc">${esc(r.count)} files</span>` : ""}<span class="doco">Open · WRI sign-in</span></a>`).join("");
+      $("briefingNote").hidden = true;
+      if (d.draft) $("docNote").textContent = "Draft: everything found for this incident (opens with a WRI ArcGIS sign-in). Untick documents in Edit package; the published page links only the ones you keep.";
+    } else if (cand.length){
+      $("docNote").textContent = "Draft: documents found for this incident. Pick which ones are published (as WRI sign-in links) in Edit package.";
+      $("docList").innerHTML = cand.map(c =>
+        `<div class="docrow" data-doc="${esc(c.id)}"><span class="doct">${esc(c.section)}</span><span class="docc">${esc(c.title !== c.section ? c.title : "")}</span></div>`).join("");
+    } else {
+      $("docList").innerHTML = '<p class="muted">No documents in this package.</p>';
+    }
+  }
+
+  // Daily reports index (published days) for the project site's Daily tab
+  async function loadDaily(d){
+    if (d.daily || !d.pages_root) return [];
+    try {
+      const r = await fetch(d.pages_root + "/daily/" + encodeURIComponent(d.slug) + "/index.json?ts=" + Date.now(), {cache:"no-store"});
+      return r.ok ? (await r.json()) : [];
+    } catch (e) { return []; }
+  }
+  function renderDaily(d, days){
+    $("dailyList").innerHTML = days.map(x =>
+      `<div class="docrow"><span class="doct">${esc(fmtDate(x.date + "T12:00:00"))}${x.day_number ? " · Day " + esc(x.day_number) : ""}</span>`
+      + `<span class="docc">${esc(x.headline || "")}</span>`
+      + `<a class="doco" href="${esc(d.pages_root + "/daily/" + d.slug + "/" + x.page)}" target="_blank" rel="noopener">Photos</a>`
+      + (x.pdf_url ? `<a class="doco" href="${esc(x.pdf_url)}" target="_blank" rel="noopener">Report PDF · sign-in</a>` : "")
+      + `</div>`).join("");
+  }
+
+  function openLightbox(src){ if (!src) return; $("lbImg").src = src; $("lightbox").hidden = false; }
+  $("lbClose").onclick = () => { $("lightbox").hidden = true; $("lbImg").src = ""; };
+  $("lightbox").onclick = e => { if (e.target.id === "lightbox") { $("lightbox").hidden = true; $("lbImg").src = ""; } };
+
+  function renderTabs(d){
+    const counts = {panos: (d.panos||[]).length, orthos: (d.orthos||[]).length, photos: (d.photos||[]).length,
+                    documents: (d.documents||[]).length || (d.doc_candidates||[]).length,
+                    daily: (d._days||[]).length};
+    const secs = [["summary","Summary"],["map","Map"],["panos","360°"],["orthos","Orthos"],["photos","Photos"],["documents","Documents"],["daily","Daily reports"]]
+      // hide a tab when the section is curated off OR has no content (keeps the bar honest)
+      .filter(([k]) => d.sections[k] !== false && (counts[k] === undefined || counts[k] > 0 || k === "map"));
+    if (PRINT){ $("tabs").hidden = true; for (const [k] of secs) showSection(k, true); if (window.initPackageMap) window.initPackageMap(d); return; }
+    $("tabs").hidden = false;
+    $("tabs").innerHTML = secs.map(([k, label], i) =>
+      `<button class="tab${i===0?" on":""}" data-sec="${k}">${esc(label)}</button>`).join("");
+    for (const b of $("tabs").querySelectorAll(".tab")) b.onclick = () => {
+      for (const [k] of secs) showSection(k, k === b.dataset.sec);
+      for (const t of $("tabs").querySelectorAll(".tab")) t.classList.toggle("on", t === b);
+      // lazy-init the map the first time its tab is opened (so it has a real size and centers on
+      // the incident); self-guards on re-click and just re-fits the view.
+      if (b.dataset.sec === "map" && window.initPackageMap) window.initPackageMap(d);
+    };
+    const first = secs[0] ? secs[0][0] : "summary";
+    showSection(first, true);
+    if (first === "map" && window.initPackageMap) window.initPackageMap(d);
+  }
+
+  function render(d){
+    DATA = d;
+    document.title = (d.draft ? "[DRAFT] " : "") + (d.incident_name || d.slug) + " — WRI Incident Package";
+    $("title").textContent = d.incident_name || d.slug;
+    $("heroMeta").innerHTML = [d.client && esc(d.client.toUpperCase()), d.summary.location && esc(d.summary.location),
+      d.summary.date_opened && esc(d.summary.date_opened)].filter(Boolean).join(" &nbsp;·&nbsp; ");
+    $("genDate").textContent = fmtDate(d.generated);
+    $("footSlug").textContent = d.slug;
+    renderStats(d);
+    renderGallery(d);
+    renderPanos(d);
+    renderOrthos(d);
+    renderDocs(d);
+    renderDaily(d, d._days || []);
+    if (d.daily) {
+      $("title").textContent = d.incident_name;
+      document.querySelector(".hero .eyebrow").textContent = "Whitewater Rescue Institute · Daily Report" + (d.daily.day_number ? " · Day " + d.daily.day_number : "");
+      const g = d.daily.glance || {};
+      $("stats").innerHTML = [["Personnel on site", g.personnel], ["Work assignments", g.work_assignments], ["Photos", g.photos],
+        ["Recon observations", g.recon_observations], ["Vessel trips", g.vessel_trips], ["213RR requests", g.rr213_new]]
+        .map(([k, v]) => `<div class="stat"><div class="stat-v">${esc(v == null ? "—" : v)}</div><div class="stat-k">${esc(k)}</div></div>`).join("");
+      $("briefingNote").textContent = "The full daily report (narrative, personnel, safety and documents) is sent to the client as a PDF.";
+    }
+    if (d.prep) {
+      $("title").textContent = d.incident_name;
+      document.querySelector(".hero .eyebrow").textContent = "Whitewater Rescue Institute · BNSF PREP Drill Package";
+      $("briefingNote").textContent = "The BNSF exercise documentation (filled form, evaluation, photo log, sign-in and attachments) is built from the editor and emailed as a PDF.";
+    }
+    renderTabs(d);
+    if (EDIT && window.initCuration) window.initCuration(d);
+    if (d.draft) $("draftbanner").hidden = false;
+  }
+
+  async function load(){
+    const d = await (await fetch("data/incident.json?ts=" + Date.now(), {cache:"no-store"})).json();
+    d._days = await loadDaily(d);
+    // draft gate (skipped for print + edit, which are already behind the draft link)
+    if (d.draft && d.pin_required && !PRINT && !sessionStorage.getItem("wri_pkg_ok_" + d.slug)){
+      $("gate").hidden = false;
+      $("gateBtn").onclick = async () => {
+        const pin = $("gatePin").value.trim();
+        const ok = await checkPin(d, pin);
+        if (ok){ sessionStorage.setItem("wri_pkg_ok_" + d.slug, "1"); sessionStorage.setItem("wri_pkg_pin_" + d.slug, pin); $("gate").hidden = true; render(d); }
+        else { $("gateErr").hidden = false; $("gateErr").textContent = "Incorrect PIN."; }
+      };
+      $("gatePin").addEventListener("keydown", e => { if (e.key === "Enter") $("gateBtn").click(); });
+      return;
+    }
+    render(d);
+  }
+
+  // PIN check: ask the GAS dispatcher (server-side verify against the row's draft_pin).
+  // FAILS CLOSED when no dispatch url is configured -- except on localhost, the dev harness.
+  async function checkPin(d, pin){
+    if (!d.dispatch_url || d.dispatch_url.startsWith("__")) {
+      return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+    }
+    try {
+      const r = await fetch(d.dispatch_url, {method:"POST",
+        body: JSON.stringify({api:"package-pin", slug:d.slug, request_id:d.request_gid, pin})});
+      const j = await r.json();
+      return !!(j && j.ok);
+    } catch (e) { return false; }
+  }
+
+  load().catch(e => { $("title").textContent = "Could not load this package"; console.error(e); });
+})();
+</script>
+</body>
+</html>
