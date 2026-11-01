@@ -1,0 +1,98 @@
+{
+ "slug": "2607missouri",
+ "incident_name": "2607missouri \u2014 BNSF drill package 2026-07-14",
+ "client": "BNSF",
+ "generated": "2026-11-01T13:57:40Z",
+ "draft": true,
+ "request_gid": "8647bd87-e563-43b9-b9bb-484d8ab6be01",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 1,
+  "photo_count": 0,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "Three Forks, MT",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   46.0096600927125,
+   -111.413533687592
+  ],
+  "bbox": [
+   -111.413533687592,
+   46.0096600927125,
+   -111.413533687592,
+   46.0096600927125
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [],
+ "panos": [],
+ "orthos": [],
+ "documents": [],
+ "doc_candidates": [
+  {
+   "id": "ics205a",
+   "key": "ics205a",
+   "section": "ICS 205A \u2014 Communications List",
+   "title": "ICS 205A (16 contacts)"
+  },
+  {
+   "id": "hasp:46",
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "title": "HASP #46 (issued this day)"
+  }
+ ],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 1
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 0
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 2
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages",
+ "prep": {
+  "date": "2026-07-14",
+  "project_slug": "2607missouri"
+ }
+}
