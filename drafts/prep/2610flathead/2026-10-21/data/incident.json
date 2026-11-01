@@ -1,0 +1,125 @@
+{
+ "slug": "2610flathead",
+ "incident_name": "2610flathead \u2014 BNSF drill package 2026-10-21",
+ "client": "BNSF",
+ "generated": "2026-11-01T14:01:04Z",
+ "draft": true,
+ "request_gid": "285dd97f-517e-4664-b79b-58dee903053f",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 0,
+  "photo_count": 2,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "West Glacier, MT",
+  "date_opened": ""
+ },
+ "map": {
+  "center": null,
+  "bbox": null,
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": null,
+   "key": "ortho:a3020f6f40fa48eca1895dec88fbd2b2",
+   "type": "Drone ortho: Bridge Collection 1",
+   "when": "",
+   "src": "assets/ortho/a3020f6f40fa48eca1895dec88fbd2b2.jpg",
+   "thumb": "assets/ortho/a3020f6f40fa48eca1895dec88fbd2b2_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "ortho:2324b4f76d884073ba9fab1262b51616",
+   "type": "Drone ortho: Bridge Collection 2",
+   "when": "",
+   "src": "assets/ortho/2324b4f76d884073ba9fab1262b51616.jpg",
+   "thumb": "assets/ortho/2324b4f76d884073ba9fab1262b51616_t.jpg"
+  }
+ ],
+ "panos": [],
+ "orthos": [],
+ "documents": [],
+ "doc_candidates": [
+  {
+   "id": "ics201:1zUMVSOTZJc1D6-d9tj8dn99x7BAVntdq",
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "title": "ICS 201 (latest version)"
+  },
+  {
+   "id": "ics205a",
+   "key": "ics205a",
+   "section": "ICS 205A \u2014 Communications List",
+   "title": "ICS 205A (14 contacts)"
+  },
+  {
+   "id": "hasp:70",
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "title": "HASP #70 (issued this day)"
+  },
+  {
+   "id": "grp:WRI_GRP_Universal_DEV:161:379",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Belton Bridge (GRP Capture MFF-10)"
+  },
+  {
+   "id": "grp:MF_Flathead_GRP_Points_2025_WFL1:10:10",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Belton Bridge"
+  }
+ ],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 0
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 2
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 5
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages",
+ "prep": {
+  "date": "2026-10-21",
+  "project_slug": "2610flathead"
+ }
+}
