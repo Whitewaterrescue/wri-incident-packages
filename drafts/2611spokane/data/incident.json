@@ -1,0 +1,227 @@
+{
+ "slug": "2611spokane",
+ "incident_name": "2611spokane",
+ "client": "BNSF",
+ "generated": "2026-11-02T23:57:40Z",
+ "draft": true,
+ "request_gid": "5bd99ae7-65d4-496a-9b55-92fa250d407d",
+ "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
+ "pin_required": true,
+ "sections": {
+  "summary": true,
+  "map": true,
+  "panos": true,
+  "orthos": true,
+  "photos": true,
+  "documents": true
+ },
+ "summary": {
+  "recon_count": 13,
+  "photo_count": 12,
+  "pano_count": 0,
+  "ortho_count": 0,
+  "location": "Spokane, WA",
+  "date_opened": ""
+ },
+ "map": {
+  "center": [
+   47.68525628934445,
+   -117.3283146545225
+  ],
+  "bbox": [
+   -117.33165501582,
+   47.6845095677389,
+   -117.324974293225,
+   47.68600301095
+  ],
+  "recon_url": "data/recon.geojson",
+  "panos_url": "data/panos.geojson",
+  "orthos_url": "data/orthos.json"
+ },
+ "photos": [
+  {
+   "oid": 338,
+   "att_id": 138,
+   "key": "338:138",
+   "type": "safety_briefing",
+   "when": 1793632500000,
+   "src": "assets/recon/338/0.jpg",
+   "thumb": "assets/recon/338/0_t.jpg"
+  },
+  {
+   "oid": 339,
+   "att_id": 139,
+   "key": "339:139",
+   "type": "other_action",
+   "when": 1793634180000,
+   "src": "assets/recon/339/0.jpg",
+   "thumb": "assets/recon/339/0_t.jpg"
+  },
+  {
+   "oid": 340,
+   "att_id": 140,
+   "key": "340:140",
+   "type": "current_boom_site",
+   "when": 1793638680000,
+   "src": "assets/recon/340/0.jpg",
+   "thumb": "assets/recon/340/0_t.jpg"
+  },
+  {
+   "oid": 341,
+   "att_id": 141,
+   "key": "341:141",
+   "type": "current_boom_site",
+   "when": 1793639400000,
+   "src": "assets/recon/341/0.jpg",
+   "thumb": "assets/recon/341/0_t.jpg"
+  },
+  {
+   "oid": 342,
+   "att_id": 142,
+   "key": "342:142",
+   "type": "current_boom_site",
+   "when": 1793639400000,
+   "src": "assets/recon/342/0.jpg",
+   "thumb": "assets/recon/342/0_t.jpg"
+  },
+  {
+   "oid": 343,
+   "att_id": 143,
+   "key": "343:143",
+   "type": "current_boom_site",
+   "when": 1793639580000,
+   "src": "assets/recon/343/0.jpg",
+   "thumb": "assets/recon/343/0_t.jpg"
+  },
+  {
+   "oid": 344,
+   "att_id": 144,
+   "key": "344:144",
+   "type": "current_boom_site",
+   "when": 1793639580000,
+   "src": "assets/recon/344/0.jpg",
+   "thumb": "assets/recon/344/0_t.jpg"
+  },
+  {
+   "oid": 345,
+   "att_id": 145,
+   "key": "345:145",
+   "type": "planned_boom_site",
+   "when": 1793639760000,
+   "src": "assets/recon/345/0.jpg",
+   "thumb": "assets/recon/345/0_t.jpg"
+  },
+  {
+   "oid": 345,
+   "att_id": 146,
+   "key": "345:146",
+   "type": "planned_boom_site",
+   "when": 1793639760000,
+   "src": "assets/recon/345/1.jpg",
+   "thumb": "assets/recon/345/1_t.jpg"
+  },
+  {
+   "oid": 345,
+   "att_id": 147,
+   "key": "345:147",
+   "type": "planned_boom_site",
+   "when": 1793639760000,
+   "src": "assets/recon/345/2.jpg",
+   "thumb": "assets/recon/345/2_t.jpg"
+  },
+  {
+   "oid": 346,
+   "att_id": 148,
+   "key": "346:148",
+   "type": "other_action",
+   "when": 1793644680000,
+   "src": "assets/recon/346/0.jpg",
+   "thumb": "assets/recon/346/0_t.jpg"
+  },
+  {
+   "oid": 346,
+   "att_id": 149,
+   "key": "346:149",
+   "type": "other_action",
+   "when": 1793644680000,
+   "src": "assets/recon/346/1.jpg",
+   "thumb": "assets/recon/346/1_t.jpg"
+  }
+ ],
+ "panos": [],
+ "orthos": [],
+ "documents": [],
+ "doc_candidates": [
+  {
+   "id": "ics201:1r-3bpDcQkrOg8JwXrmID-CHLFdVOTwPs",
+   "key": "ics201",
+   "section": "ICS 201 \u2014 Incident Briefing",
+   "title": "ICS201-1793401432178"
+  },
+  {
+   "id": "ics205a",
+   "key": "ics205a",
+   "section": "ICS 205A \u2014 Communications List",
+   "title": "ICS 205A \u2014 Communications List (11 contacts)"
+  },
+  {
+   "id": "hasp:72",
+   "key": "hasp",
+   "section": "Health & Safety Plan (HASP)",
+   "title": "HASP_BNSF_2611spokane_11/02/2026"
+  },
+  {
+   "id": "air",
+   "key": "air",
+   "section": "Air Monitoring Log",
+   "title": "Air Monitoring Log (2 readings)"
+  },
+  {
+   "id": "ics220",
+   "key": "ics220",
+   "section": "ICS 220 \u2014 Air Operations Summary",
+   "title": "ICS 220 \u2014 Air Operations Summary (1 mission)"
+  },
+  {
+   "id": "grp:WA_ECY_GRP_Strategies:1552:1530",
+   "key": "grp",
+   "section": "Response Plan Strategy Sheets (GRP)",
+   "title": "Upriver Dam Reservoir"
+  }
+ ],
+ "manifest": {
+  "sections": [
+   {
+    "key": "summary",
+    "label": "Summary",
+    "count": null
+   },
+   {
+    "key": "map",
+    "label": "Incident map",
+    "count": 13
+   },
+   {
+    "key": "panos",
+    "label": "360\u00b0 panoramas",
+    "count": 0
+   },
+   {
+    "key": "orthos",
+    "label": "Drone orthos",
+    "count": 0
+   },
+   {
+    "key": "photos",
+    "label": "Recon photos",
+    "count": 12
+   },
+   {
+    "key": "documents",
+    "label": "Documents (WRI sign-in)",
+    "count": 6
+   }
+  ]
+ },
+ "pages_root": "https://whitewaterrescue.github.io/wri-incident-packages"
+}
