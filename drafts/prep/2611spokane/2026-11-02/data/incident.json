@@ -2,7 +2,7 @@
  "slug": "2611spokane",
  "incident_name": "2611spokane \u2014 BNSF drill package 2026-11-02",
  "client": "BNSF",
- "generated": "2026-11-03T01:31:24Z",
+ "generated": "2026-11-03T02:26:10Z",
  "draft": true,
  "request_gid": "e427fe6f-c6a0-4f98-bd10-65c8d135a726",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
@@ -17,7 +17,7 @@
  },
  "summary": {
   "recon_count": 13,
-  "photo_count": 12,
+  "photo_count": 16,
   "pano_count": 0,
   "ortho_count": 0,
   "location": "Spokane, WA",
@@ -146,6 +146,42 @@
    "when": 1793644680000,
    "src": "assets/recon/346/1.jpg",
    "thumb": "assets/recon/346/1_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_1_boom_launch_ramp.jpg",
+   "type": "Pictures 07:30",
+   "when": "2026-11-02T07:30",
+   "src": "assets/dropbox/1.jpg",
+   "thumb": "assets/dropbox/1_t.jpg",
+   "dropbox": true
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_2_current_buster_tow.jpg",
+   "type": "Pictures 09:00",
+   "when": "2026-11-02T09:00",
+   "src": "assets/dropbox/2.jpg",
+   "thumb": "assets/dropbox/2_t.jpg",
+   "dropbox": true
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_3_current_buster_deployed.jpg",
+   "type": "Pictures 09:15",
+   "when": "2026-11-02T09:15",
+   "src": "assets/dropbox/3.jpg",
+   "thumb": "assets/dropbox/3_t.jpg",
+   "dropbox": true
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_4_current_buster_closeup.jpg",
+   "type": "Pictures 09:20",
+   "when": "2026-11-02T09:20",
+   "src": "assets/dropbox/4.jpg",
+   "thumb": "assets/dropbox/4_t.jpg",
+   "dropbox": true
   }
  ],
  "panos": [],
@@ -208,7 +244,7 @@
    {
     "key": "photos",
     "label": "Recon photos",
-    "count": 12
+    "count": 16
    },
    {
     "key": "documents",
