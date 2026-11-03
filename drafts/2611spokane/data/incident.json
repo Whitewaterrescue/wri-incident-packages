@@ -2,9 +2,9 @@
  "slug": "2611spokane",
  "incident_name": "2611spokane",
  "client": "BNSF",
- "generated": "2026-11-02T23:57:40Z",
+ "generated": "2026-11-03T17:00:06Z",
  "draft": true,
- "request_gid": "5bd99ae7-65d4-496a-9b55-92fa250d407d",
+ "request_gid": "9547edab-a51d-4008-abd4-e8f3bfc323c9",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -17,7 +17,7 @@
  },
  "summary": {
   "recon_count": 13,
-  "photo_count": 12,
+  "photo_count": 16,
   "pano_count": 0,
   "ortho_count": 0,
   "location": "Spokane, WA",
@@ -146,6 +146,42 @@
    "when": 1793644680000,
    "src": "assets/recon/346/1.jpg",
    "thumb": "assets/recon/346/1_t.jpg"
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_1_boom_launch_ramp.jpg",
+   "type": "Pictures 07:30",
+   "when": "2026-11-02T07:30",
+   "src": "assets/dropbox/1.jpg",
+   "thumb": "assets/dropbox/1_t.jpg",
+   "dropbox": true
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_2_current_buster_tow.jpg",
+   "type": "Pictures 09:00",
+   "when": "2026-11-02T09:00",
+   "src": "assets/dropbox/2.jpg",
+   "thumb": "assets/dropbox/2_t.jpg",
+   "dropbox": true
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_3_current_buster_deployed.jpg",
+   "type": "Pictures 09:15",
+   "when": "2026-11-02T09:15",
+   "src": "assets/dropbox/3.jpg",
+   "thumb": "assets/dropbox/3_t.jpg",
+   "dropbox": true
+  },
+  {
+   "oid": null,
+   "key": "dropbox:/whitewater rescue team folder/2611spokane/pictures/spokane_4_current_buster_closeup.jpg",
+   "type": "Pictures 09:20",
+   "when": "2026-11-02T09:20",
+   "src": "assets/dropbox/4.jpg",
+   "thumb": "assets/dropbox/4_t.jpg",
+   "dropbox": true
   }
  ],
  "panos": [],
@@ -153,7 +189,7 @@
  "documents": [],
  "doc_candidates": [
   {
-   "id": "ics201:1r-3bpDcQkrOg8JwXrmID-CHLFdVOTwPs",
+   "id": "ics201:1JHm5Buvte5b_PYdXN2uaDoAxqL2vLEwg",
    "key": "ics201",
    "section": "ICS 201 \u2014 Incident Briefing",
    "title": "ICS201-1793401432178"
@@ -162,7 +198,7 @@
    "id": "ics205a",
    "key": "ics205a",
    "section": "ICS 205A \u2014 Communications List",
-   "title": "ICS 205A \u2014 Communications List (11 contacts)"
+   "title": "ICS 205A \u2014 Communications List (12 contacts)"
   },
   {
    "id": "hasp:72",
@@ -214,7 +250,7 @@
    {
     "key": "photos",
     "label": "Recon photos",
-    "count": 12
+    "count": 16
    },
    {
     "key": "documents",
