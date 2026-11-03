@@ -2,9 +2,9 @@
  "slug": "2611spokane",
  "incident_name": "2611spokane \u2014 BNSF drill package 2026-11-02",
  "client": "BNSF",
- "generated": "2026-11-03T02:26:10Z",
+ "generated": "2026-11-03T13:13:36Z",
  "draft": true,
- "request_gid": "e427fe6f-c6a0-4f98-bd10-65c8d135a726",
+ "request_gid": "7c83e462-a731-48a0-9a6e-16535290f7f7",
  "dispatch_url": "https://script.google.com/macros/s/AKfycbxfNt0qmV37WmLTsCxBsHj873kIZJWoYZQumbY40SBu5hMjkGcjr2WMoh1WPu5gZXVw/exec",
  "pin_required": true,
  "sections": {
@@ -198,7 +198,13 @@
    "id": "ics205a",
    "key": "ics205a",
    "section": "ICS 205A \u2014 Communications List",
-   "title": "ICS 205A (10 contacts)"
+   "title": "ICS 205A (11 contacts)"
+  },
+  {
+   "id": "ics205:pb7965aa",
+   "key": "ics205",
+   "section": "ICS 205 / 205A \u2014 Communications",
+   "title": "ICS 205-CG Radio Communications Plan"
   },
   {
    "id": "hasp:72",
@@ -249,7 +255,7 @@
    {
     "key": "documents",
     "label": "Documents (WRI sign-in)",
-    "count": 5
+    "count": 6
    }
   ]
  },
